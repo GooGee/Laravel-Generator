@@ -10,6 +10,9 @@
     <extensions defaultExtensionNs="com.intellij">
         <applicationService serviceImplementation="com.github.googee.laravelgenerator.services.MyApplicationService"/>
         <projectService serviceImplementation="com.github.googee.laravelgenerator.services.MyProjectService"/>
+        <toolWindow id="Code Generator"
+                    anchor="bottom"
+                    factoryClass="com.github.googee.laravelgenerator.services.GeneratorWindowFactory"/>
     </extensions>
 
     <applicationListeners>
