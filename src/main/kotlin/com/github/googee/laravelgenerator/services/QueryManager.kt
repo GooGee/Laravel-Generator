@@ -1,26 +1,28 @@
 package com.github.googee.laravelgenerator.services
 
+import com.intellij.openapi.project.Project
 import com.intellij.ui.jcef.JBCefBrowser
 import com.intellij.ui.jcef.JBCefJSQuery
 
 class QueryManager {
     companion object {
 
-        fun register(browser: JBCefBrowser): String {
-            val text = load(browser) + "," + save(browser) + "," + make(browser) + "," + readDB(browser)
+        fun register(browser: JBCefBrowser, project: Project): String {
+            val fm = FileManager(project)
+            val text = load(browser, fm) + "," + save(browser, fm) + "," + make(browser, fm) + "," + readDB(browser, fm)
             return "window.JavaBridge = {$text};"
         }
 
-        fun make(browser: JBCefBrowser): String {
+        fun make(browser: JBCefBrowser, fm: FileManager): String {
             val query = JBCefJSQuery.create(browser)
             query.addHandler { text ->
-                FileManager.make(text)
+                fm.make(text)
                 null
             }
             return "make : function(text) {" + query.inject("text") + "}"
         }
 
-        fun readDB(browser: JBCefBrowser): String {
+        fun readDB(browser: JBCefBrowser, fm: FileManager): String {
             val query = JBCefJSQuery.create(browser)
             query.addHandler { text ->
                 val data = ""
@@ -29,10 +31,10 @@ class QueryManager {
             return "readDB : function() {" + query.inject("") + "}"
         }
 
-        fun load(browser: JBCefBrowser): String {
+        fun load(browser: JBCefBrowser, fm: FileManager): String {
             val query = JBCefJSQuery.create(browser)
             query.addHandler { text ->
-                val data = FileManager.load()
+                val data = fm.load()
                 JBCefJSQuery.Response(data)
             }
             val onSuccessCallback = "function(response) {window.bridge.loadCB(response)}"
@@ -40,10 +42,10 @@ class QueryManager {
             return "load : function() {" + query.inject("", onSuccessCallback, onFailureCallback) + "}"
         }
 
-        fun save(browser: JBCefBrowser): String {
+        fun save(browser: JBCefBrowser, fm: FileManager): String {
             val query = JBCefJSQuery.create(browser)
             query.addHandler { text ->
-                FileManager.save(text)
+                fm.save(text)
                 null
             }
             return "save : function(text) {" + query.inject("text") + "}"

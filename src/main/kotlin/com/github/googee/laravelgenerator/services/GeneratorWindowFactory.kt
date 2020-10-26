@@ -16,7 +16,7 @@ class GeneratorWindowFactory : ToolWindowFactory {
         println("create browser")
         val uri = "http://localhost:8080/"
         val browser = JBCefBrowser(uri)
-        val code = QueryManager.register(browser)
+        val code = QueryManager.register(browser, project)
         val handler = JCEFLoadHandler(browser, uri, code)
         browser.jbCefClient.addLoadHandler(handler, browser.cefBrowser)
         toolWindow.component.add(browser.component)
