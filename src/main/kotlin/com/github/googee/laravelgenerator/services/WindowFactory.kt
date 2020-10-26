@@ -4,7 +4,6 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.jcef.JBCefApp
-import com.intellij.ui.jcef.JBCefBrowser
 
 class WindowFactory : ToolWindowFactory {
 
@@ -14,10 +13,9 @@ class WindowFactory : ToolWindowFactory {
         }
 
         println("create browser")
-        val uri = "http://localhost:8080/"
-        val browser = JBCefBrowser(uri)
+        val browser = BrowserFactory.make()
         val code = QueryManager.register(browser, project)
-        val handler = JCEFLoadHandler(browser, uri, code)
+        val handler = JCEFLoadHandler(browser, browser.cefBrowser.url, code)
         browser.jbCefClient.addLoadHandler(handler, browser.cefBrowser)
         toolWindow.component.add(browser.component)
     }
