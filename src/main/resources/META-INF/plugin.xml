@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.github.googee.laravelgenerator</id>
-    <name>Laravel-Generator</name>
-    <vendor>googee</vendor>
+    <name>Laravel Code Generator</name>
+    <vendor>GooGee</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
