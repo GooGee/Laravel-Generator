@@ -4,7 +4,7 @@ import com.intellij.ui.jcef.JBCefBrowser
 
 class BrowserFactory {
     companion object {
-        val uri = "http://localhost:8080/"
+        val uri = System.getenv("CodeGeneratorURI")
 
         fun make(): JBCefBrowser {
             val browser = JBCefBrowser(uri)
