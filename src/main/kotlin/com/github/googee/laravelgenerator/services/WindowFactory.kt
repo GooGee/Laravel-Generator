@@ -5,46 +5,56 @@ import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
 import com.intellij.ui.jcef.JBCefApp
 import com.intellij.ui.jcef.JBCefBrowser
-import com.intellij.ui.layout.panel
-import com.intellij.util.ui.UIUtil
+import java.awt.Color
+import java.awt.Component
+import javax.swing.*
 
 class WindowFactory : ToolWindowFactory {
-    var code: String = ""
-    var browser: JBCefBrowser? = null
-    var window: ToolWindow? = null
+    private var code: String = ""
+    private var browser: JBCefBrowser? = null
+    private val label = JLabel()
+    private val panel = JPanel()
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
+        makePanel()
+        toolWindow.component.add(panel)
         if (!JBCefApp.isSupported()) {
-            addLabel("JCEF is not supported")
+            showError("Error: JCEF is required")
             return
         }
 
         println("create browser")
-        window = toolWindow
-        this.browser = BrowserFactory.make()
-        val browser = this.browser!!
+        val browser = BrowserFactory.make()
+        this.browser = browser
         code = QueryManager.register(browser, project)
         val handler = JCEFLoadHandler(this)
         browser.jbCefClient.addLoadHandler(handler, browser.cefBrowser)
-        toolWindow.component.add(browser.component)
+        panel.add(browser.component)
     }
 
-    fun addLabel(text: String) {
-        val panel = panel() {
-            row {
-                label(text, UIUtil.ComponentStyle.LARGE)
-            }
-        }
-        window!!.component.add(panel)
+    private fun makeIcon(): ImageIcon {
+        val url = javaClass.getResource("/image/loading.gif")
+        return ImageIcon(url)
+    }
+
+    private fun makePanel() {
+        label.icon = makeIcon()
+        label.foreground = Color.RED
+        label.alignmentX = Component.CENTER_ALIGNMENT
+        panel.layout = BoxLayout(panel, BoxLayout.PAGE_AXIS)
+        panel.add(label)
     }
 
     fun showError(text: String) {
         println("showError")
-        addLabel(text)
+        println(text)
+        label.text = text
     }
 
     fun showWeb() {
         println("showWeb")
+        panel.remove(0)
+        panel.revalidate()
         val cefBrowser = browser!!.cefBrowser
         cefBrowser.executeJavaScript(code, cefBrowser.url, 0)
         cefBrowser.executeJavaScript("window.bridge.load()", cefBrowser.url, 0)
