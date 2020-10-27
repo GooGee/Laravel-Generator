@@ -5,7 +5,7 @@ import org.cef.browser.CefFrame
 import org.cef.handler.CefLoadHandler
 import org.cef.network.CefRequest
 
-class JCEFLoadHandler(val wf: WindowFactory) : CefLoadHandler {
+class JCEFLoadHandler(val view: View) : CefLoadHandler {
 
     override fun onLoadStart(p0: CefBrowser?, p1: CefFrame?, p2: CefRequest.TransitionType?) {
     }
@@ -14,13 +14,13 @@ class JCEFLoadHandler(val wf: WindowFactory) : CefLoadHandler {
     }
 
     override fun onLoadError(p0: CefBrowser?, p1: CefFrame?, code: CefLoadHandler.ErrorCode?, text: String?, url: String?) {
-        wf.showError(text ?: "Error")
+        view.showError(text ?: "Error")
     }
 
     override fun onLoadEnd(p0: CefBrowser?, p1: CefFrame?, httpStatusCode: Int) {
         println(httpStatusCode)
         if (httpStatusCode == 200) {
-            wf.showWeb()
+            view.showWeb()
         }
     }
 }
