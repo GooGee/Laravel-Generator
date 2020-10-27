@@ -3,6 +3,7 @@ package com.github.googee.laravelgenerator.services
 import com.intellij.openapi.project.Project
 import com.intellij.ui.jcef.JBCefBrowser
 import com.intellij.ui.jcef.JBCefJSQuery
+import org.json.simple.JSONObject
 
 class QueryManager {
     companion object {
@@ -35,10 +36,9 @@ class QueryManager {
         private fun readDB(browser: JBCefBrowser, fm: FileManager): String {
             val query = JBCefJSQuery.create(browser)
             query.addHandler { uri ->
-                println(uri)
                 var data = ""
-                Request.get(uri) { sb ->
-                    data = sb.toString()
+                Request.get(uri) { text ->
+                    data = text
                 }
                 JBCefJSQuery.Response(data)
             }
