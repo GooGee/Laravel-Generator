@@ -2,6 +2,20 @@
 
 # Laravel Code Generator Changelog
 
-## [Unreleased]
+## [1.1.0]
+### Added
+- Convert MySQL schema to Laravel Migration
+- Convert PostgreSQL schema to Laravel Migration
+
+### Changed
+- Add version in web URI
+- Fix UI in ToolWindow
+
+
+## [1.0.0]
 ### Release
 - Laravel Code Generator v1.0.0
+
+## [Unreleased] 
+### Added
+- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
