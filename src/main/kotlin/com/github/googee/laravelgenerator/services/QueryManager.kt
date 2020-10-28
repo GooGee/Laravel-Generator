@@ -20,7 +20,7 @@ class QueryManager {
 
         fun register(browser: JBCefBrowser, project: Project): String {
             val fm = FileManager(project)
-            val text = load(browser, fm) + "," + save(browser, fm) + "," + make(browser, fm) + "," + readDB(browser, fm)
+            val text = load(browser, fm) + "," + save(browser, fm) + "," + make(browser, fm) + "," + readDB(browser) + "," + run(browser)
             return "window.JavaBridge = {$text};"
         }
 
@@ -33,7 +33,7 @@ class QueryManager {
             return getFunction("make", query)
         }
 
-        private fun readDB(browser: JBCefBrowser, fm: FileManager): String {
+        private fun readDB(browser: JBCefBrowser): String {
             val query = JBCefJSQuery.create(browser)
             query.addHandler { uri ->
                 var data = ""
@@ -43,6 +43,18 @@ class QueryManager {
                 JBCefJSQuery.Response(data)
             }
             return getFunction("readDB", query)
+        }
+
+        private fun run(browser: JBCefBrowser): String {
+            val query = JBCefJSQuery.create(browser)
+            query.addHandler { uri ->
+                var data = ""
+                Request.post(uri) { text ->
+                    data = text
+                }
+                JBCefJSQuery.Response(data)
+            }
+            return getFunction("run", query)
         }
 
         private fun load(browser: JBCefBrowser, fm: FileManager): String {
