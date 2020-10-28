@@ -11,12 +11,20 @@ class Request {
     companion object {
 
         fun get(uri: String, handler: (String) -> Unit) {
+            run(uri, "GET", handler)
+        }
+
+        fun post(uri: String, handler: (String) -> Unit) {
+            run(uri, "POST", handler)
+        }
+
+        fun run(uri: String, method: String, handler: (String) -> Unit) {
             println(uri)
             var text = ""
             try {
                 val mURL = URL(uri)
                 val ccc = mURL.openConnection() as HttpURLConnection
-                ccc.requestMethod = "GET"
+                ccc.requestMethod = method
                 ccc.connectTimeout = 3111
                 ccc.setRequestProperty("Accept", "application/json")
                 if (ccc.responseCode >= HttpURLConnection.HTTP_BAD_REQUEST) {
