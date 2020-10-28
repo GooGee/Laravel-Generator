@@ -1,7 +1,6 @@
 package com.github.googee.laravelgenerator.services
 
 import com.intellij.openapi.project.Project
-import com.intellij.openapi.wm.ToolWindow
 import com.intellij.ui.jcef.JBCefBrowser
 import java.awt.Color
 import java.awt.Component
