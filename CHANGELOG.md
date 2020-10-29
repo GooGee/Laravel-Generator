@@ -2,6 +2,16 @@
 
 # Laravel Code Generator Changelog
 
+## [1.2.0]
+### Added
+- Run artisan command
+- Set group color
+
+### Changed
+- Store server address
+- Replace loading image
+
+
 ## [1.1.0]
 ### Added
 - Convert MySQL schema to Laravel Migration

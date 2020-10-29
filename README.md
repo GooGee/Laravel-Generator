@@ -16,10 +16,10 @@
 <!-- Plugin description -->
 
 
-Intuitive and efficient code generator for Laravel developers.
+## Intuitive and efficient code generator for Laravel developers.
 
 
-![GUI](https://github.com/GooGee/Entity-Builder/raw/main/image/table.gif)
+![GUI](https://github.com/GooGee/Code-Generator/raw/main/image/field.gif)
 
 
 ## Features
@@ -27,6 +27,7 @@ Intuitive and efficient code generator for Laravel developers.
 - Custom layer (Controller, Model, Repository, etc.)
 - Custom template (with syntax: `for`, `if`, etc.)
 - Convert Database schema to Laravel Migration
+- Run artisan command
 - Design database tables
 - Define model factories
 - Manage model relations
