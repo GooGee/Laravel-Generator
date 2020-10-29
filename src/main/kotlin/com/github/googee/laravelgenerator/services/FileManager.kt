@@ -1,5 +1,6 @@
 package com.github.googee.laravelgenerator.services
 
+import com.github.googee.laravelgenerator.services.json.MakeFile
 import com.google.common.io.CharStreams
 import com.intellij.openapi.project.Project
 import java.io.File
@@ -8,6 +9,7 @@ import java.io.InputStreamReader
 import java.io.PrintWriter
 import java.nio.file.Files
 import java.nio.file.Paths
+import kotlinx.serialization.json.Json
 
 class FileManager(val project: Project) {
     val FileName = "code-generator.json"
@@ -18,13 +20,11 @@ class FileManager(val project: Project) {
 
     fun make(text: String) {
         try {
-            val index = text.indexOf('*')
-            val file = text.substring(0, index)
-            val path = Paths.get(path(file))
+            val data = Json.decodeFromString(MakeFile.serializer(), text)
+            val path = Paths.get(path(data.file))
             Files.createDirectories(path.parent)
-            val content = text.substring(index + 1)
             val writer = PrintWriter(path.toString())
-            writer.println(content)
+            writer.println(data.content)
             writer.close()
         } catch (error: Exception) {
             println(error.message)
