@@ -15,6 +15,7 @@ class View : JPanel() {
     private val label: JLabel
 
     init {
+        this.background = Color.white
         this.layout = BoxLayout(this, BoxLayout.PAGE_AXIS)
 
         label = JLabel(makeIcon())
