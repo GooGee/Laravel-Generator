@@ -10,6 +10,7 @@
 ### Changed
 - Store server address
 - Replace loading image
+- Use JSON for communication
 
 
 ## [1.1.0]
