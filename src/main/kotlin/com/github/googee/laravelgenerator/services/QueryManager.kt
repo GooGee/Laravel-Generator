@@ -49,7 +49,7 @@ class QueryManager {
             val query = JBCefJSQuery.create(browser)
             query.addHandler { uri ->
                 var data = ""
-                Request.post(uri) { text ->
+                Request.post(uri, "") { text ->
                     data = text
                 }
                 JBCefJSQuery.Response(data)
