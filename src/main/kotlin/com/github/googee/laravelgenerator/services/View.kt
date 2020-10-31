@@ -1,6 +1,5 @@
 package com.github.googee.laravelgenerator.services
 
-import com.intellij.openapi.project.Project
 import com.intellij.ui.jcef.JBCefBrowser
 import java.awt.Color
 import java.awt.Component
@@ -9,7 +8,7 @@ import javax.swing.ImageIcon
 import javax.swing.JLabel
 import javax.swing.JPanel
 
-class View : JPanel() {
+class View(val fm: FileManager) : JPanel() {
     private val browser: JBCefBrowser = BrowserFactory.make()
     private var code: String = ""
     private val label: JLabel
@@ -24,10 +23,10 @@ class View : JPanel() {
         this.add(label)
     }
 
-    fun addBrowser(project: Project) {
+    fun addBrowser() {
         println("add browser")
         this.add(browser.component)
-        code = QueryManager.register(browser, project)
+        code = QueryManager.register(browser, fm)
         val handler = JCEFLoadHandler(this)
         browser.jbCefClient.addLoadHandler(handler, browser.cefBrowser)
     }
@@ -49,7 +48,9 @@ class View : JPanel() {
         this.revalidate()
         val cefBrowser = browser.cefBrowser
         cefBrowser.executeJavaScript(code, cefBrowser.url, 0)
-        cefBrowser.executeJavaScript("window.bridge.load()", cefBrowser.url, 0)
+
+        val data = fm.load().toJSON()
+        cefBrowser.executeJavaScript("window.bridge.load($data)", cefBrowser.url, 0)
     }
 
 }

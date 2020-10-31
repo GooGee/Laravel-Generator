@@ -18,7 +18,7 @@ class JCEFLoadHandler(val view: View) : CefLoadHandler {
     }
 
     override fun onLoadEnd(p0: CefBrowser?, p1: CefFrame?, httpStatusCode: Int) {
-        println(httpStatusCode)
+        println("HTTP status: $httpStatusCode")
         if (httpStatusCode == 200) {
             view.showWeb()
         }

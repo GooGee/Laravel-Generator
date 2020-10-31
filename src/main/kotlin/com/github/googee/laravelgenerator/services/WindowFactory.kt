@@ -8,14 +8,15 @@ import com.intellij.ui.jcef.JBCefApp
 class WindowFactory : ToolWindowFactory {
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        val view = View()
+        val fm = FileManager(project)
+        val view = View(fm)
         toolWindow.component.add(view)
         if (!JBCefApp.isSupported()) {
             view.showError("Error: JCEF is required")
             return
         }
 
-        view.addBrowser(project)
+        view.addBrowser()
     }
 
 }
