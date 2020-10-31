@@ -1,78 +1,62 @@
 package com.github.googee.laravelgenerator.services
 
-import com.intellij.openapi.project.Project
 import com.intellij.ui.jcef.JBCefBrowser
 import com.intellij.ui.jcef.JBCefJSQuery
-import org.json.simple.JSONObject
 
 class QueryManager {
     companion object {
 
-        private fun getFunction(name: String, query: JBCefJSQuery): String {
-            val onSuccessCallback = getSuccessCallback(name)
-            val onFailureCallback = "function(error_code, error_message) {alert(error_message)}"
-            return name + " : function(text) {" + query.inject("text", onSuccessCallback, onFailureCallback) + "}"
+        private fun makeFunction(name: String, query: JBCefJSQuery): String {
+            val onSuccessCallback = "function(response) {window.bridge.${name}Handler(response)}"
+            val onFailureCallback = "function(error_code, error_message) {window.bridge.handleError(error_message)}"
+            val text = query.inject("text", onSuccessCallback, onFailureCallback)
+            return "$name : function(text) {$text}"
         }
 
-        private fun getSuccessCallback(name: String): String {
-            return "function(response) {window.bridge." + name + "CB(response)}"
-        }
-
-        fun register(browser: JBCefBrowser, project: Project): String {
-            val fm = FileManager(project)
-            val text = load(browser, fm) + "," + save(browser, fm) + "," + make(browser, fm) + "," + readDB(browser) + "," + run(browser)
+        fun register(browser: JBCefBrowser, fm: FileManager): String {
+            val text = edit(browser) + "," + read(browser, fm) + "," + write(browser, fm) + "," + get(browser) + "," + post(browser)
             return "window.JavaBridge = {$text};"
         }
 
-        private fun make(browser: JBCefBrowser, fm: FileManager): String {
+        private fun edit(browser: JBCefBrowser): String {
             val query = JBCefJSQuery.create(browser)
             query.addHandler { text ->
-                fm.make(text)
+                println(text)
                 null
             }
-            return getFunction("make", query)
+            return makeFunction("edit", query)
         }
 
-        private fun readDB(browser: JBCefBrowser): String {
-            val query = JBCefJSQuery.create(browser)
-            query.addHandler { uri ->
-                var data = ""
-                Request.get(uri) { text ->
-                    data = text
-                }
-                JBCefJSQuery.Response(data)
-            }
-            return getFunction("readDB", query)
-        }
-
-        private fun run(browser: JBCefBrowser): String {
-            val query = JBCefJSQuery.create(browser)
-            query.addHandler { uri ->
-                var data = ""
-                Request.post(uri, "") { text ->
-                    data = text
-                }
-                JBCefJSQuery.Response(data)
-            }
-            return getFunction("run", query)
-        }
-
-        private fun load(browser: JBCefBrowser, fm: FileManager): String {
+        private fun get(browser: JBCefBrowser): String {
             val query = JBCefJSQuery.create(browser)
             query.addHandler { text ->
-                val data = fm.load()
-                JBCefJSQuery.Response(data)
+                JBCefJSQuery.Response(RequestManager.get(text).toJSON())
             }
-            return getFunction("load", query)
+            return makeFunction("get", query)
         }
 
-        private fun save(browser: JBCefBrowser, fm: FileManager): String {
+        private fun post(browser: JBCefBrowser): String {
             val query = JBCefJSQuery.create(browser)
             query.addHandler { text ->
-                fm.save(text)
-                null
+                JBCefJSQuery.Response(RequestManager.post(text).toJSON())
             }
-            return getFunction("save", query)
+            return makeFunction("post", query)
+        }
+
+        private fun read(browser: JBCefBrowser, fm: FileManager): String {
+            val query = JBCefJSQuery.create(browser)
+            query.addHandler { text ->
+                JBCefJSQuery.Response(fm.read(text).toJSON())
+            }
+            return makeFunction("read", query)
+        }
+
+        private fun write(browser: JBCefBrowser, fm: FileManager): String {
+            val query = JBCefJSQuery.create(browser)
+            query.addHandler { text ->
+                JBCefJSQuery.Response(fm.write(text).toJSON())
+            }
+            return makeFunction("write", query)
         }
 
     }
