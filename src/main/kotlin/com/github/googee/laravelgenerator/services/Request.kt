@@ -1,7 +1,6 @@
 package com.github.googee.laravelgenerator.services
 
 import com.google.common.io.CharStreams
-import org.json.simple.JSONObject
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
@@ -10,17 +9,19 @@ import java.nio.charset.Charset
 class Request {
 
     companion object {
+        const val ErrorMessage = "Error"
 
-        fun get(uri: String, handler: (String) -> Unit) {
+        fun get(uri: String, handler: (Int, String) -> Unit) {
             run(uri, "GET", "", handler)
         }
 
-        fun post(uri: String, json: String, handler: (String) -> Unit) {
+        fun post(uri: String, json: String, handler: (Int, String) -> Unit) {
             run(uri, "POST", json, handler)
         }
 
-        fun run(uri: String, method: String, json: String, handler: (String) -> Unit) {
+        fun run(uri: String, method: String, json: String, handler: (Int, String) -> Unit) {
             println(uri)
+            var status = HttpURLConnection.HTTP_BAD_REQUEST
             var text = ""
             try {
                 val mURL = URL(uri)
@@ -39,26 +40,20 @@ class Request {
                     os.close()
                 }
 
-                if (ccc.responseCode >= HttpURLConnection.HTTP_BAD_REQUEST) {
-                    println(ccc.responseMessage)
-                    text = makeError(ccc.responseMessage ?: "Error", ccc.responseCode.toString())
+                status = ccc.responseCode
+                if (status >= HttpURLConnection.HTTP_BAD_REQUEST) {
+                    text = ccc.responseMessage ?: ErrorMessage
                 } else {
-                    text = CharStreams.toString(InputStreamReader(ccc.inputStream))
+                    val reader = InputStreamReader(ccc.inputStream, "UTF-8")
+                    text = CharStreams.toString(reader)
                 }
             } catch (exception: Exception) {
-                text = makeError(exception.message ?: "Error", "400")
+                text = exception.message ?: ErrorMessage
             }
 
-            handler(text)
+            handler(status, text)
         }
 
-        private fun makeError(message: String, status: String): String {
-            val map = hashMapOf<String, String>()
-            map.set("status", status)
-            map.set("message", message)
-            val json = JSONObject(map)
-            return json.toJSONString()
-        }
     }
 
 }
