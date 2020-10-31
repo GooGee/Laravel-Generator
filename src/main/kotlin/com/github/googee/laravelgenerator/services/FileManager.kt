@@ -1,6 +1,6 @@
 package com.github.googee.laravelgenerator.services
 
-import com.github.googee.laravelgenerator.services.json.FileRequest
+import com.github.googee.laravelgenerator.services.json.JSRequest
 import com.google.common.io.CharStreams
 import com.intellij.openapi.project.Project
 import java.io.File
@@ -31,37 +31,37 @@ class FileManager(val project: Project) {
     }
 
     fun read(text: String): Response {
-        var fr: FileRequest? = null
+        var json: JSRequest? = null
         try {
-            fr = FileRequest(text)
-            val stream = FileInputStream(path(fr.file))
+            json = JSRequest.load(text)
+            val stream = FileInputStream(path(json.key))
             val reader = InputStreamReader(stream, "UTF-8")
-            return Response.ok(fr.file, CharStreams.toString(reader))
+            return Response.ok(json.key, CharStreams.toString(reader))
         } catch (error: Exception) {
             println(error.message)
-            if (fr == null) {
+            if (json == null) {
                 return Response.error("", "", ErrorMessageParse)
             }
-            return Response.error(fr.file, "", error.message ?: ErrorMessage)
+            return Response.error(json.key, "", error.message ?: ErrorMessage)
         }
     }
 
     fun write(text: String): Response {
-        var fr: FileRequest? = null
+        var json: JSRequest? = null
         try {
-            fr = FileRequest(text)
-            val path = Paths.get(path(fr.file))
+            json = JSRequest.load(text)
+            val path = Paths.get(path(json.key))
             Files.createDirectories(path.parent)
             val writer = PrintWriter(path.toString())
-            writer.println(fr.data)
+            writer.println(json.data)
             writer.close()
-            return Response.ok(fr.file, "")
+            return Response.ok(json.key, "")
         } catch (error: Exception) {
             println(error.message)
-            if (fr == null) {
+            if (json == null) {
                 return Response.error("", "", ErrorMessageParse)
             }
-            return Response.error(fr.file, "", error.message ?: ErrorMessage)
+            return Response.error(json.key, "", error.message ?: ErrorMessage)
         }
     }
 
