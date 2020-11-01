@@ -10,8 +10,7 @@ import javax.swing.ImageIcon
 import javax.swing.JLabel
 import javax.swing.JPanel
 
-class WebTab(private val em: EditorManager, private val fm: FileManager) : JPanel() {
-    private val browser: JBCefBrowser = BrowserFactory.make()
+class WebTab(private val browser: JBCefBrowser, private val em: EditorManager, private val fm: FileManager, private val tb: ToBrowser) : JPanel() {
     private var code: String = ""
     private val label: JLabel
 
@@ -62,8 +61,7 @@ class WebTab(private val em: EditorManager, private val fm: FileManager) : JPane
         val cefBrowser = browser.cefBrowser
         cefBrowser.executeJavaScript(code, cefBrowser.url, 0)
 
-        val data = fm.load().toJSON()
-        cefBrowser.executeJavaScript("window.bridge.load($data)", cefBrowser.url, 0)
+        tb.load(fm)
     }
 
 }

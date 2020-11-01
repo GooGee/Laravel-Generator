@@ -9,9 +9,11 @@ class WindowFactory : ToolWindowFactory {
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         val manager = toolWindow.contentManager
-        val em = EditorManager(manager)
+        val browser = BrowserFactory.make()
+        val tb = ToBrowser(browser.cefBrowser)
+        val em = EditorManager(manager, tb)
         val fm = FileManager(project)
-        val panel = WebTab(em, fm)
+        val panel = WebTab(browser, em, fm, tb)
         val tab = manager.factory.createContent(panel, "Generator", false)
         tab.isCloseable = false
         manager.addContent(tab)
