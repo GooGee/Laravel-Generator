@@ -17,10 +17,7 @@ class EditorTab(data: JSEditRequest, save: (key: String, text: String) -> Unit) 
         val saveButton = JButton("Save")
         saveButton.addActionListener { e ->
             println("Save")
-            val text = box.text
-            if (text != data.data) {
-                save(data.key, text)
-            }
+            save(data.key, box.text)
         }
 
         val reset = JButton("Reset")
