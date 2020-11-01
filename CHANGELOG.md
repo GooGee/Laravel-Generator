@@ -2,6 +2,16 @@
 
 # Laravel Code Generator Changelog
 
+## [1.3.0]
+### Added
+- Code editor
+
+### Changed
+- Post JSON request
+- New JS API
+- Fix id of entity in field list
+
+
 ## [1.2.0]
 ### Added
 - Run artisan command
