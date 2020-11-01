@@ -38,7 +38,7 @@ class WebTab(private val browser: JBCefBrowser, private val em: EditorManager, p
     private fun addBrowser() {
         println("add browser")
         this.add(browser.component)
-        code = QueryManager.register(browser, em, fm)
+        code = QueryManager.register(browser, em, fm, tb)
         val handler = JCEFLoadHandler(this)
         browser.jbCefClient.addLoadHandler(handler, browser.cefBrowser)
     }

@@ -9,7 +9,6 @@ import java.nio.charset.Charset
 class Request {
 
     companion object {
-        const val ErrorMessage = "Error"
 
         fun get(uri: String, handler: (Int, String) -> Unit) {
             run(uri, "GET", "", handler)
@@ -42,13 +41,13 @@ class Request {
 
                 status = ccc.responseCode
                 if (status >= HttpURLConnection.HTTP_BAD_REQUEST) {
-                    text = ccc.responseMessage ?: ErrorMessage
+                    text = ccc.responseMessage ?: ErrorMessage.Unknown
                 } else {
                     val reader = InputStreamReader(ccc.inputStream, "UTF-8")
                     text = CharStreams.toString(reader)
                 }
             } catch (exception: Exception) {
-                text = exception.message ?: ErrorMessage
+                text = exception.message ?: ErrorMessage.Unknown
             }
 
             handler(status, text)

@@ -9,7 +9,7 @@ class ToBrowser(private val browser: CefBrowser) {
         run("load", data)
     }
 
-    private fun run(function: String, data: String) {
+    fun run(function: String, data: String) {
         println(function)
         browser.executeJavaScript("window.bridge.$function($data)", browser.url, 0)
     }
