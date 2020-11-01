@@ -12,6 +12,7 @@
         <projectService serviceImplementation="com.github.googee.laravelgenerator.services.MyProjectService"/>
         <toolWindow id="Code Generator"
                     anchor="bottom"
+                    canCloseContents="true"
                     factoryClass="com.github.googee.laravelgenerator.services.WindowFactory"/>
     </extensions>
 
