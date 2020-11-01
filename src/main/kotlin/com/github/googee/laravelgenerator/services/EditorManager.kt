@@ -29,7 +29,7 @@ class EditorManager(private val manager: ContentManager, private val tb: ToBrows
                 if (tab == null) {
                     makeEditor(json)
                 } else {
-//                    manager.setSelectedContent(tab)
+                    manager.setSelectedContent(tab)
                 }
             }
         })
@@ -40,7 +40,7 @@ class EditorManager(private val manager: ContentManager, private val tb: ToBrows
         val tab = manager.factory.createContent(panel, json.key, false)
         tab.isCloseable = true
         manager.addContent(tab)
-//        manager.setSelectedContent(tab)
+        manager.setSelectedContent(tab)
     }
 
 }
