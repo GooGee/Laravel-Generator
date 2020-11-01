@@ -12,8 +12,6 @@ import java.nio.file.Paths
 
 class FileManager(val project: Project) {
     val FileName = "code-generator.json"
-    val ErrorMessage = "Error"
-    val ErrorMessageParse = "Error parsing JSON data"
 
     fun path(file: String): String {
         return project.basePath + File.separator + file
@@ -26,7 +24,7 @@ class FileManager(val project: Project) {
             return Response.ok("", CharStreams.toString(reader))
         } catch (error: Exception) {
             println(error.message)
-            return Response.error("", "", error.message ?: ErrorMessage)
+            return Response.error("", "", error.message ?: ErrorMessage.Unknown)
         }
     }
 
@@ -40,9 +38,9 @@ class FileManager(val project: Project) {
         } catch (error: Exception) {
             println(error.message)
             if (json == null) {
-                return Response.error("", "", ErrorMessageParse)
+                return Response.error("", "", ErrorMessage.ParseJSON)
             }
-            return Response.error(json.key, "", error.message ?: ErrorMessage)
+            return Response.error(json.key, "", error.message ?: ErrorMessage.Unknown)
         }
     }
 
@@ -59,9 +57,9 @@ class FileManager(val project: Project) {
         } catch (error: Exception) {
             println(error.message)
             if (json == null) {
-                return Response.error("", "", ErrorMessageParse)
+                return Response.error("", "", ErrorMessage.ParseJSON)
             }
-            return Response.error(json.key, "", error.message ?: ErrorMessage)
+            return Response.error(json.key, "", error.message ?: ErrorMessage.Unknown)
         }
     }
 

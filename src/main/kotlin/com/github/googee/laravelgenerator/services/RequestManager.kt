@@ -6,8 +6,6 @@ import java.net.HttpURLConnection
 class RequestManager {
 
     companion object {
-        const val ErrorMessage = "Error"
-        const val ErrorMessageParse = "Error parsing JSON data"
 
         fun get(text: String): Response {
             var json: JSRequest? = null
@@ -26,9 +24,9 @@ class RequestManager {
             } catch (error: Exception) {
                 println(error.message)
                 if (json == null) {
-                    return Response.error("", "", ErrorMessageParse)
+                    return Response.error("", "", ErrorMessage.ParseJSON)
                 }
-                return Response.error(json.key, "", error.message ?: ErrorMessage)
+                return Response.error(json.key, "", error.message ?: ErrorMessage.Unknown)
             }
         }
 
@@ -49,9 +47,9 @@ class RequestManager {
             } catch (error: Exception) {
                 println(error.message)
                 if (json == null) {
-                    return Response.error("", "", ErrorMessageParse)
+                    return Response.error("", "", ErrorMessage.ParseJSON)
                 }
-                return Response.error(json.key, "", error.message ?: ErrorMessage)
+                return Response.error(json.key, "", error.message ?: ErrorMessage.Unknown)
             }
         }
 
