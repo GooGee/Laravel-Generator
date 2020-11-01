@@ -13,16 +13,15 @@ class QueryManager {
             return "$name : function(text) {$text}"
         }
 
-        fun register(browser: JBCefBrowser, fm: FileManager): String {
-            val text = edit(browser) + "," + read(browser, fm) + "," + write(browser, fm) + "," + get(browser) + "," + post(browser)
+        fun register(browser: JBCefBrowser, em: EditorManager, fm: FileManager): String {
+            val text = edit(browser, em) + "," + read(browser, fm) + "," + write(browser, fm) + "," + get(browser) + "," + post(browser)
             return "window.JavaBridge = {$text};"
         }
 
-        private fun edit(browser: JBCefBrowser): String {
+        private fun edit(browser: JBCefBrowser, em: EditorManager): String {
             val query = JBCefJSQuery.create(browser)
             query.addHandler { text ->
-                println(text)
-                null
+                JBCefJSQuery.Response(em.show(text).toJSON())
             }
             return makeFunction("edit", query)
         }
