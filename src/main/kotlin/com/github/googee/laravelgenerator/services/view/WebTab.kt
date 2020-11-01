@@ -1,5 +1,7 @@
-package com.github.googee.laravelgenerator.services
+package com.github.googee.laravelgenerator.services.view
 
+import com.github.googee.laravelgenerator.services.*
+import com.intellij.ui.jcef.JBCefApp
 import com.intellij.ui.jcef.JBCefBrowser
 import java.awt.Color
 import java.awt.Component
@@ -8,7 +10,7 @@ import javax.swing.ImageIcon
 import javax.swing.JLabel
 import javax.swing.JPanel
 
-class View(val fm: FileManager) : JPanel() {
+class WebTab(private val em: EditorManager, private val fm: FileManager) : JPanel() {
     private val browser: JBCefBrowser = BrowserFactory.make()
     private var code: String = ""
     private val label: JLabel
@@ -21,12 +23,23 @@ class View(val fm: FileManager) : JPanel() {
         label.foreground = Color.RED
         label.alignmentX = Component.CENTER_ALIGNMENT
         this.add(label)
+
+        check()
     }
 
-    fun addBrowser() {
+    private fun check() {
+        if (!JBCefApp.isSupported()) {
+            showError("Error: JCEF is required")
+            return
+        }
+
+        addBrowser()
+    }
+
+    private fun addBrowser() {
         println("add browser")
         this.add(browser.component)
-        code = QueryManager.register(browser, fm)
+        code = QueryManager.register(browser, em, fm)
         val handler = JCEFLoadHandler(this)
         browser.jbCefClient.addLoadHandler(handler, browser.cefBrowser)
     }

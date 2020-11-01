@@ -1,11 +1,12 @@
 package com.github.googee.laravelgenerator.services
 
+import com.github.googee.laravelgenerator.services.view.WebTab
 import org.cef.browser.CefBrowser
 import org.cef.browser.CefFrame
 import org.cef.handler.CefLoadHandler
 import org.cef.network.CefRequest
 
-class JCEFLoadHandler(val view: View) : CefLoadHandler {
+class JCEFLoadHandler(val tab: WebTab) : CefLoadHandler {
 
     override fun onLoadStart(p0: CefBrowser?, p1: CefFrame?, p2: CefRequest.TransitionType?) {
     }
@@ -14,13 +15,13 @@ class JCEFLoadHandler(val view: View) : CefLoadHandler {
     }
 
     override fun onLoadError(p0: CefBrowser?, p1: CefFrame?, code: CefLoadHandler.ErrorCode?, text: String?, url: String?) {
-        view.showError(text ?: "Error")
+        tab.showError(text ?: "Error")
     }
 
     override fun onLoadEnd(p0: CefBrowser?, p1: CefFrame?, httpStatusCode: Int) {
         println("HTTP status: $httpStatusCode")
         if (httpStatusCode == 200) {
-            view.showWeb()
+            tab.showWeb()
         }
     }
 }
