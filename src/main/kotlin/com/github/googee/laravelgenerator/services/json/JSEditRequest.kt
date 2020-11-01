@@ -4,11 +4,11 @@ import kotlinx.serialization.*
 import kotlinx.serialization.json.Json
 
 @Serializable
-class JSRequest(val key: String, val data: String) {
+class JSEditRequest(val key: String, val data: String, val type: String) {
 
     companion object {
 
-        fun load(text: String): JSRequest {
+        fun load(text: String): JSEditRequest {
             return Json.decodeFromString(serializer(), text)
         }
 
