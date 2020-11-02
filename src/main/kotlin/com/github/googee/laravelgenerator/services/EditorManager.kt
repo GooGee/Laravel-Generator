@@ -6,6 +6,7 @@ import com.intellij.openapi.application.ApplicationManager
 import com.intellij.ui.content.ContentManager
 
 class EditorManager(private val manager: ContentManager, private val tb: ToBrowser) {
+    val map = HashMap<String, EditorTab>()
 
     fun show(text: String): Response {
         var json: JSEditRequest? = null
@@ -29,6 +30,8 @@ class EditorManager(private val manager: ContentManager, private val tb: ToBrows
                 if (tab == null) {
                     makeEditor(json)
                 } else {
+                    val panel = map.get(json.key)
+                    panel?.update(json)
                     manager.setSelectedContent(tab)
                 }
             }
@@ -37,6 +40,7 @@ class EditorManager(private val manager: ContentManager, private val tb: ToBrows
 
     private fun makeEditor(json: JSEditRequest) {
         val panel = EditorTab(json) { key, text -> tb.update(key, text) }
+        map.set(json.key, panel)
         val tab = manager.factory.createContent(panel, json.key, false)
         tab.isCloseable = true
         manager.addContent(tab)

@@ -5,12 +5,13 @@ import java.awt.BorderLayout
 import javax.swing.JButton
 import javax.swing.JPanel
 
-class EditorTab(data: JSEditRequest, save: (key: String, text: String) -> Unit) : JPanel() {
+class EditorTab(private var data: JSEditRequest, save: (key: String, text: String) -> Unit) : JPanel() {
+    private val editor: CodeEditor
 
     init {
         this.layout = BorderLayout()
 
-        val editor = CodeEditor(data.data)
+        editor = CodeEditor(data.data)
 
         val saveButton = JButton("Save")
         saveButton.addActionListener { e ->
@@ -30,6 +31,11 @@ class EditorTab(data: JSEditRequest, save: (key: String, text: String) -> Unit) 
 
         this.add(panel, BorderLayout.PAGE_START)
         this.add(editor, BorderLayout.CENTER)
+    }
+
+    fun update(data: JSEditRequest) {
+        this.data = data
+        editor.text = data.data
     }
 
 }
