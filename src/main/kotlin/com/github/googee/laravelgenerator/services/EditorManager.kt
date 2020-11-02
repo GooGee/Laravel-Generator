@@ -3,9 +3,10 @@ package com.github.googee.laravelgenerator.services
 import com.github.googee.laravelgenerator.services.json.JSEditRequest
 import com.github.googee.laravelgenerator.services.view.EditorTab
 import com.intellij.openapi.application.ApplicationManager
+import com.intellij.openapi.project.Project
 import com.intellij.ui.content.ContentManager
 
-class EditorManager(private val manager: ContentManager, private val tb: ToBrowser) {
+class EditorManager(private val project: Project, private val manager: ContentManager, private val tb: ToBrowser) {
     val map = HashMap<String, EditorTab>()
 
     fun show(text: String): Response {
@@ -39,7 +40,7 @@ class EditorManager(private val manager: ContentManager, private val tb: ToBrows
     }
 
     private fun makeEditor(json: JSEditRequest) {
-        val panel = EditorTab(json) { key, text -> tb.update(key, text) }
+        val panel = EditorTab(project, json) { key, text -> tb.update(key, text) }
         map.set(json.key, panel)
         val tab = manager.factory.createContent(panel, json.key, false)
         tab.isCloseable = true

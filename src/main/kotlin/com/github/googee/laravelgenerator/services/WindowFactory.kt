@@ -11,7 +11,7 @@ class WindowFactory : ToolWindowFactory {
         val manager = toolWindow.contentManager
         val browser = BrowserFactory.make()
         val tb = ToBrowser(browser.cefBrowser)
-        val em = EditorManager(manager, tb)
+        val em = EditorManager(project, manager, tb)
         val fm = FileManager(project)
         val panel = WebTab(browser, em, fm, tb)
         val tab = manager.factory.createContent(panel, "Generator", false)
