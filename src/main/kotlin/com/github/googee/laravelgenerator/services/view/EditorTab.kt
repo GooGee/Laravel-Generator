@@ -1,6 +1,7 @@
 package com.github.googee.laravelgenerator.services.view
 
 import com.github.googee.laravelgenerator.services.json.JSEditRequest
+import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
 import java.awt.BorderLayout
@@ -41,7 +42,17 @@ class EditorTab(project: Project, private var data: JSEditRequest, save: (key: S
     }
 
     fun updateText(text: String) {
-        editor.document.setText(text)
+        val task = Runnable() {
+            run() {
+                editor.document.setText(text)
+            }
+        }
+        val application = ApplicationManager.getApplication()
+        if (application.isDispatchThread) {
+            application.runWriteAction(task)
+        } else {
+            application.invokeLater(task)
+        }
     }
 
 }
