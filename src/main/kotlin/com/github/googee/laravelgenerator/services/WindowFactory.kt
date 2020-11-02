@@ -1,5 +1,6 @@
 package com.github.googee.laravelgenerator.services
 
+import com.github.googee.laravelgenerator.services.view.BrowserFactory
 import com.github.googee.laravelgenerator.services.view.WebTab
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
