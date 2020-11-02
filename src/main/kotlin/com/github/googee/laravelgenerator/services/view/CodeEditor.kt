@@ -7,7 +7,8 @@ class CodeEditor(code: String) : EditorTextField(code) {
 
     override fun createEditor(): EditorEx {
         val editor = super.createEditor()
-        editor.setOneLineMode(false)
+        editor.isOneLineMode = false
+        editor.setFontSize(16)
         editor.setHorizontalScrollbarVisible(true)
         editor.setVerticalScrollbarVisible(true)
         return editor
