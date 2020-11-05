@@ -1,5 +1,6 @@
 package com.github.googee.laravelgenerator.services
 
+import com.github.googee.laravelgenerator.services.bridge.Response
 import com.github.googee.laravelgenerator.services.json.JSRequest
 import com.google.common.io.CharStreams
 import com.intellij.openapi.project.Project

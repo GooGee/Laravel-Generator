@@ -1,4 +1,4 @@
-package com.github.googee.laravelgenerator.services
+package com.github.googee.laravelgenerator.services.bridge
 
 import kotlinx.serialization.*
 import kotlinx.serialization.json.Json

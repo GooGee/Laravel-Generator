@@ -1,5 +1,6 @@
 package com.github.googee.laravelgenerator.services
 
+import com.github.googee.laravelgenerator.services.bridge.Response
 import com.github.googee.laravelgenerator.services.bridge.ToBrowser
 import com.github.googee.laravelgenerator.services.json.JSEditRequest
 import com.github.googee.laravelgenerator.services.view.EditorTab
