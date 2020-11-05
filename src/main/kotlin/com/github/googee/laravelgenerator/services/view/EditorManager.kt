@@ -1,9 +1,9 @@
-package com.github.googee.laravelgenerator.services
+package com.github.googee.laravelgenerator.services.view
 
+import com.github.googee.laravelgenerator.services.ErrorMessage
 import com.github.googee.laravelgenerator.services.bridge.Response
 import com.github.googee.laravelgenerator.services.bridge.ToBrowser
 import com.github.googee.laravelgenerator.services.json.JSEditRequest
-import com.github.googee.laravelgenerator.services.view.EditorTab
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
 import com.intellij.ui.content.ContentManager
