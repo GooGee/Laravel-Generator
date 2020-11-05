@@ -1,5 +1,7 @@
-package com.github.googee.laravelgenerator.services
+package com.github.googee.laravelgenerator.services.bridge
 
+import com.github.googee.laravelgenerator.services.FileManager
+import com.github.googee.laravelgenerator.services.Response
 import org.cef.browser.CefBrowser
 
 class ToBrowser(private val browser: CefBrowser) {
