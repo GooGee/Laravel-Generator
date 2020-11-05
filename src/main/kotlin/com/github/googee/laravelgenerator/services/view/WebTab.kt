@@ -1,6 +1,7 @@
 package com.github.googee.laravelgenerator.services.view
 
 import com.github.googee.laravelgenerator.services.*
+import com.github.googee.laravelgenerator.services.bridge.QueryManager
 import com.github.googee.laravelgenerator.services.bridge.ToBrowser
 import com.intellij.ui.jcef.JBCefApp
 import com.intellij.ui.jcef.JBCefBrowser
