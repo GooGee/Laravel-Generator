@@ -1,6 +1,7 @@
 package com.github.googee.laravelgenerator.services.view
 
-import com.github.googee.laravelgenerator.services.json.JSEditRequest
+import com.github.googee.laravelgenerator.services.file.FileManager
+import com.github.googee.laravelgenerator.services.json.JSRequest
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
@@ -8,13 +9,14 @@ import java.awt.BorderLayout
 import javax.swing.JButton
 import javax.swing.JPanel
 
-class EditorTab(project: Project, private var data: JSEditRequest, save: (key: String, text: String) -> Unit) : JPanel() {
+class EditorTab(project: Project, private var data: JSRequest, private val fm: FileManager, save: (key: String, text: String) -> Unit) : JPanel() {
     private val editor: Editor
 
     init {
         this.layout = BorderLayout()
 
-        editor = EditorFactory.make(project, data.type, data.data)
+        val file = fm.getFile(data.key)
+        editor = EditorFactory.make(project, file)
 
         val saveButton = JButton("Save")
         saveButton.addActionListener { e ->
@@ -36,7 +38,7 @@ class EditorTab(project: Project, private var data: JSEditRequest, save: (key: S
         this.add(editor.component, BorderLayout.CENTER)
     }
 
-    fun update(data: JSEditRequest) {
+    fun update(data: JSRequest) {
         this.data = data
         updateText(data.data)
     }

@@ -1,7 +1,11 @@
 package com.github.googee.laravelgenerator.services
 
+import com.github.googee.laravelgenerator.services.bridge.RequestManager
 import com.github.googee.laravelgenerator.services.bridge.ToBrowser
+import com.github.googee.laravelgenerator.services.file.FileManager
+import com.github.googee.laravelgenerator.services.loader.Loader
 import com.github.googee.laravelgenerator.services.view.BrowserFactory
+import com.github.googee.laravelgenerator.services.view.EditorManager
 import com.github.googee.laravelgenerator.services.view.WebTab
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.wm.ToolWindow
@@ -12,10 +16,12 @@ class WindowFactory : ToolWindowFactory {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         val manager = toolWindow.contentManager
         val browser = BrowserFactory.make()
-        val tb = ToBrowser(browser.cefBrowser)
-        val em = EditorManager(project, manager, tb)
         val fm = FileManager(project)
-        val panel = WebTab(browser, em, fm, tb)
+        val loader = Loader(fm)
+        val tb = ToBrowser(browser.cefBrowser, loader)
+        val em = EditorManager(project, manager, tb, fm)
+        val rm = RequestManager(browser, tb, em, fm)
+        val panel = WebTab(browser, tb, rm)
         val tab = manager.factory.createContent(panel, "Generator", false)
         tab.isCloseable = false
         manager.addContent(tab)
