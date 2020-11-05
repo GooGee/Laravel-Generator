@@ -1,12 +1,12 @@
 package com.github.googee.laravelgenerator.services.bridge
 
-import com.github.googee.laravelgenerator.services.FileManager
+import com.github.googee.laravelgenerator.services.loader.Loader
 import org.cef.browser.CefBrowser
 
-class ToBrowser(private val browser: CefBrowser) {
+class ToBrowser(private val browser: CefBrowser, private val loader: Loader) {
 
-    fun load(fm: FileManager) {
-        val data = fm.load().toJSON()
+    fun load() {
+        val data = loader.load().toJSON()
         run("load", data)
     }
 
