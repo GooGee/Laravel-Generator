@@ -1,17 +1,18 @@
-package com.github.googee.laravelgenerator.services
+package com.github.googee.laravelgenerator.services.http
 
+import com.github.googee.laravelgenerator.services.ErrorMessage
 import com.google.common.io.CharStreams
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 import java.nio.charset.Charset
 
-class Request {
+class Client {
 
     companion object {
 
-        fun get(uri: String, handler: (Int, String) -> Unit) {
-            run(uri, "GET", "", handler)
+        fun get(uri: String, json: String, handler: (Int, String) -> Unit) {
+            run(uri, "GET", json, handler)
         }
 
         fun post(uri: String, json: String, handler: (Int, String) -> Unit) {
