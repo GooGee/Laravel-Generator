@@ -1,4 +1,4 @@
-package com.github.googee.laravelgenerator.services
+package com.github.googee.laravelgenerator.services.view
 
 import com.github.googee.laravelgenerator.services.view.WebTab
 import org.cef.browser.CefBrowser
