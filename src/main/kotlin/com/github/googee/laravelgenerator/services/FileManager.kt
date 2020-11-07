@@ -3,6 +3,7 @@ package com.github.googee.laravelgenerator.services
 import com.github.googee.laravelgenerator.services.json.JSRequest
 import com.google.common.io.CharStreams
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.vfs.LocalFileSystem
 import java.io.File
 import java.io.FileInputStream
 import java.io.InputStreamReader
@@ -53,6 +54,7 @@ class FileManager(val project: Project) {
             val writer = PrintWriter(path.toString())
             writer.println(json.data)
             writer.close()
+            LocalFileSystem.getInstance().refresh(true)
             return Response.ok(json.key, "")
         } catch (error: Exception) {
             println(error.message)
