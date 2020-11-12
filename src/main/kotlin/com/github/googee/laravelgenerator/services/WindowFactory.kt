@@ -3,7 +3,6 @@ package com.github.googee.laravelgenerator.services
 import com.github.googee.laravelgenerator.services.bridge.RequestManager
 import com.github.googee.laravelgenerator.services.bridge.ToBrowser
 import com.github.googee.laravelgenerator.services.file.FileManager
-import com.github.googee.laravelgenerator.services.loader.Loader
 import com.github.googee.laravelgenerator.services.view.BrowserFactory
 import com.github.googee.laravelgenerator.services.view.EditorManager
 import com.github.googee.laravelgenerator.services.view.WebTab
@@ -17,8 +16,7 @@ class WindowFactory : ToolWindowFactory {
         val manager = toolWindow.contentManager
         val browser = BrowserFactory.make()
         val fm = FileManager(project)
-        val loader = Loader(fm)
-        val tb = ToBrowser(browser.cefBrowser, loader)
+        val tb = ToBrowser(browser.cefBrowser, fm)
         val em = EditorManager(project, manager, tb, fm)
         val rm = RequestManager(browser, tb, em, fm)
         val panel = WebTab(browser, tb, rm)

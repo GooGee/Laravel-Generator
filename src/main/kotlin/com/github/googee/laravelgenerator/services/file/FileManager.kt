@@ -14,9 +14,7 @@ class FileManager(val project: Project) {
 
     companion object {
 
-        const val GeneratorFile = "data.json"
-        const val GeneratorFolder = "code-generator"
-        const val V13File = "code-generator.json"
+        const val GeneratorFile = "code-generator.json"
 
         fun read(file: String): String {
             val stream = FileInputStream(file)
@@ -44,16 +42,8 @@ class FileManager(val project: Project) {
 
     }
 
-    fun getGeneratorFile(): String {
-        return getFile(GeneratorFolder + File.separator + GeneratorFile)
-    }
-
     fun getFile(file: String): String {
         return project.basePath + File.separator + file
-    }
-
-    fun getV13File(): String {
-        return getFile(V13File)
     }
 
 }
