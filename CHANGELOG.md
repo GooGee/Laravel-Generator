@@ -2,6 +2,17 @@
 
 # Laravel Code Generator Changelog
 
+
+## [1.3.3]
+### Added 
+- Include lodash for script
+- Add scrollbar to sidebar
+- Refresh after file created
+
+### Changed 
+- Better input dialog
+
+
 ## [1.3.0]
 ### Added
 - Code editor
@@ -36,7 +47,3 @@
 ## [1.0.0]
 ### Release
 - Laravel Code Generator v1.0.0
-
-## [Unreleased] 
-### Added
-- Initial scaffold created from [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
