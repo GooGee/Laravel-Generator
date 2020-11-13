@@ -9,7 +9,7 @@ class RequestManager(val browser: JBCefBrowser, val tb: ToBrowser, val em: Edito
     private val list = ArrayList<String>()
 
     fun register(): String {
-        list.add(EditRequest().register(browser, tb, em))
+        list.add(EditRequest().register(browser, tb, em, fm))
         list.add(HTTPRequest().register(browser, tb))
         list.add(HTTPRequest().register(browser, tb, true))
         list.add(ReadRequest().register(browser, tb, fm))

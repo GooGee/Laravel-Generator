@@ -1,6 +1,5 @@
 package com.github.googee.laravelgenerator.services.view
 
-import com.github.googee.laravelgenerator.services.file.FileManager
 import com.github.googee.laravelgenerator.services.json.JSRequest
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.Editor
@@ -9,13 +8,12 @@ import java.awt.BorderLayout
 import javax.swing.JButton
 import javax.swing.JPanel
 
-class EditorTab(project: Project, private var data: JSRequest, private val fm: FileManager, save: (key: String, text: String) -> Unit) : JPanel() {
+class EditorTab(project: Project, private var data: JSRequest, file: String, save: (key: String, text: String) -> Unit) : JPanel() {
     private val editor: Editor
 
     init {
         this.layout = BorderLayout()
 
-        val file = fm.getFile(data.key)
         editor = EditorFactory.make(project, file)
 
         val saveButton = JButton("Save")
