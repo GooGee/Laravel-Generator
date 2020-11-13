@@ -1,4 +1,4 @@
-package com.github.googee.laravelgenerator.services.bridge
+package com.github.googee.laravelgenerator.services.request
 
 import com.intellij.ui.jcef.JBCefJSQuery
 

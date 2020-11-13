@@ -1,5 +1,7 @@
-package com.github.googee.laravelgenerator.services.bridge
+package com.github.googee.laravelgenerator.services.request
 
+import com.github.googee.laravelgenerator.services.bridge.Response
+import com.github.googee.laravelgenerator.services.bridge.ToBrowser
 import com.github.googee.laravelgenerator.services.http.Client
 import com.github.googee.laravelgenerator.services.json.JSRequest
 import com.intellij.ui.jcef.JBCefBrowser

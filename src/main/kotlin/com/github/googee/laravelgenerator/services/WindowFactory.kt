@@ -1,6 +1,6 @@
 package com.github.googee.laravelgenerator.services
 
-import com.github.googee.laravelgenerator.services.bridge.RequestManager
+import com.github.googee.laravelgenerator.services.request.RequestManager
 import com.github.googee.laravelgenerator.services.bridge.ToBrowser
 import com.github.googee.laravelgenerator.services.file.FileManager
 import com.github.googee.laravelgenerator.services.view.BrowserFactory

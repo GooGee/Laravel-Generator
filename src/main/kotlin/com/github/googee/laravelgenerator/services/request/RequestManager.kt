@@ -1,5 +1,6 @@
-package com.github.googee.laravelgenerator.services.bridge
+package com.github.googee.laravelgenerator.services.request
 
+import com.github.googee.laravelgenerator.services.bridge.ToBrowser
 import com.github.googee.laravelgenerator.services.view.EditorManager
 import com.github.googee.laravelgenerator.services.file.FileManager
 import com.intellij.ui.jcef.JBCefBrowser
