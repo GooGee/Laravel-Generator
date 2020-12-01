@@ -7,8 +7,12 @@ import com.github.googee.laravelgenerator.services.view.BrowserFactory
 import com.github.googee.laravelgenerator.services.view.EditorManager
 import com.github.googee.laravelgenerator.services.view.WebTab
 import com.intellij.openapi.project.Project
+import com.intellij.openapi.wm.FocusWatcher
 import com.intellij.openapi.wm.ToolWindow
 import com.intellij.openapi.wm.ToolWindowFactory
+import org.jetbrains.annotations.Nullable
+import java.awt.AWTEvent
+import java.awt.Component
 
 class WindowFactory : ToolWindowFactory {
 
@@ -22,6 +26,14 @@ class WindowFactory : ToolWindowFactory {
         val panel = WebTab(browser, tb, rm)
         val tab = manager.factory.createContent(panel, "Generator", false)
         tab.isCloseable = false
+        var watcher = object : FocusWatcher() {
+            override fun focusedComponentChanged(component: @Nullable Component?, cause: @Nullable AWTEvent?) {
+                if (focusedComponent != null) {
+                    println("refresh")
+                    FileManager.refresh()
+                }
+            }
+        }.install(toolWindow.component)
         manager.addContent(tab)
     }
 
