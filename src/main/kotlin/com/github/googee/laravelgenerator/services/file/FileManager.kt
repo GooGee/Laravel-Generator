@@ -37,6 +37,9 @@ class FileManager(val project: Project) {
             val writer = PrintWriter(path.toString())
             writer.println(text)
             writer.close()
+        }
+
+        fun refresh() {
             LocalFileSystem.getInstance().refresh(true)
         }
 
