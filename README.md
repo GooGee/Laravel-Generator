@@ -1,8 +1,8 @@
 # Laravel Code Generator
 
 ![Build](https://github.com/GooGee/Laravel-Generator/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/15276.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/15276.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/15276.svg)](https://plugins.jetbrains.com/plugin/15276)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/15276.svg)](https://plugins.jetbrains.com/plugin/15276)
 
 ## Template ToDo list
 - [x] Create a new [IntelliJ Platform Plugin Template][template] project.
