@@ -4,6 +4,27 @@
 
 
 ## [Unreleased] 
+### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [1.3.4]
+### Added
+- Add color button in sidebar
+
+### Changed
+- Change info about server
+
+
+### Security
+## [1.3.3]
 ### Added 
 - Include lodash for script
 - Add scrollbar to sidebar
