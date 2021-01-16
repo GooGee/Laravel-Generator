@@ -3,6 +3,14 @@
 # Laravel Code Generator Changelog
 
 
+## [1.3.4]
+### Added
+- Add color button in sidebar
+
+### Changed
+- Change info about server
+
+
 ## [1.3.3]
 ### Added 
 - Include lodash for script
