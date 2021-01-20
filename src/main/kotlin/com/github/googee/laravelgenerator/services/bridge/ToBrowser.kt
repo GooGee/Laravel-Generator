@@ -1,5 +1,6 @@
 package com.github.googee.laravelgenerator.services.bridge
 
+import com.github.googee.laravelgenerator.services.ErrorMessage
 import com.github.googee.laravelgenerator.services.file.FileManager
 import org.cef.browser.CefBrowser
 
@@ -7,8 +8,15 @@ class ToBrowser(private val browser: CefBrowser, private val fm: FileManager) {
 
     fun load() {
         val file = fm.getFile(FileManager.GeneratorFile)
-        val text = FileManager.read(file)
-        val data = Response.ok("", text).toJSON()
+        var data = ""
+        try {
+            val text = FileManager.read(file)
+            data = Response.ok("", text).toJSON()
+        } catch (exception: Exception) {
+            val message = exception.message ?: ErrorMessage.Unknown
+            data = Response.error("", "", message).toJSON()
+        }
+
         run("load", data)
     }
 
