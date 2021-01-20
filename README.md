@@ -32,12 +32,14 @@
 - Define model factories
 - Manage model relations
 - Make field validation rules
-- Generate Controller
-- Generate Migration
-- Generate Model
-- Generate Policy
-- Generate Request
-- Generate Test
+- Generate Controller, Migration, Model, Route, Test, etc.
+
+
+## Where is it?
+
+PHPStorm Menu Bar -> View -> Tool Windows -> Code Generator
+
+[screenshots](https://plugins.jetbrains.com/plugin/15276-laravel-code-generator/where-is-it-)
 
 
 <!-- Plugin description end -->
