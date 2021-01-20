@@ -12,6 +12,7 @@ class RequestManager(val browser: JBCefBrowser, val tb: ToBrowser, val em: Edito
         list.add(EditRequest().register(browser, tb, em, fm))
         list.add(HTTPRequest().register(browser, tb))
         list.add(HTTPRequest().register(browser, tb, true))
+        list.add(RefreshRequest().register(browser, tb, fm))
         list.add(ReadRequest().register(browser, tb, fm))
         list.add(WriteRequest().register(browser, tb, fm))
         val text = list.joinToString()
