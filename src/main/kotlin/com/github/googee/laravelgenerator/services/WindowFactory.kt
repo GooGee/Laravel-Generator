@@ -29,7 +29,6 @@ class WindowFactory : ToolWindowFactory {
         var watcher = object : FocusWatcher() {
             override fun focusedComponentChanged(component: @Nullable Component?, cause: @Nullable AWTEvent?) {
                 if (focusedComponent != null) {
-                    println("refresh")
                     FileManager.refresh()
                 }
             }

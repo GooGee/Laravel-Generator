@@ -40,6 +40,7 @@ class FileManager(val project: Project) {
         }
 
         fun refresh() {
+            println("-- refresh --")
             LocalFileSystem.getInstance().refresh(true)
         }
 
