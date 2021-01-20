@@ -26,13 +26,13 @@ class WindowFactory : ToolWindowFactory {
         val panel = WebTab(browser, tb, rm)
         val tab = manager.factory.createContent(panel, "Generator", false)
         tab.isCloseable = false
-        var watcher = object : FocusWatcher() {
-            override fun focusedComponentChanged(component: @Nullable Component?, cause: @Nullable AWTEvent?) {
-                if (focusedComponent != null) {
-                    FileManager.refresh()
-                }
-            }
-        }.install(toolWindow.component)
+//        var watcher = object : FocusWatcher() {
+//            override fun focusedComponentChanged(component: @Nullable Component?, cause: @Nullable AWTEvent?) {
+//                if (focusedComponent != null) {
+//                    FileManager.refresh()
+//                }
+//            }
+//        }.install(toolWindow.component)
         manager.addContent(tab)
     }
 
