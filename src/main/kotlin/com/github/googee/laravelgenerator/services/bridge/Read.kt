@@ -2,11 +2,11 @@ package com.github.googee.laravelgenerator.services.bridge
 
 import com.github.googee.laravelgenerator.services.file.FileManager
 
-class Read(val toJS: ToJS, val fm: FileManager) {
+class Read(val toJS: ToJS, val fm: FileManager) : IAction {
 
     val action = "read"
 
-    fun run(request: Request) {
+    override fun run(request: Request) {
         try {
             val file = fm.getFullPath(request.key)
             val content = FileManager.read(file)

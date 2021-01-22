@@ -3,9 +3,9 @@ package com.github.googee.laravelgenerator.services.bridge
 import com.github.googee.laravelgenerator.services.http.Client
 import java.net.HttpURLConnection
 
-class HTTP(val toJS: ToJS) {
+class HTTP(val toJS: ToJS) : IAction {
 
-    fun run(request: Request) {
+    override fun run(request: Request) {
         val response = post(request)
         toJS.send(response)
     }

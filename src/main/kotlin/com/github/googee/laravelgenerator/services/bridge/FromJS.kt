@@ -20,7 +20,7 @@ class FromJS(val browser: JBCefBrowser) {
         query.addHandler { text ->
             val request = Request.parse(text)
             println("call Java (${request.action}, ${request.key})")
-            ServiceManager.run()
+            ServiceManager.run(request)
             null
         }
         val function = makeFunction(query)

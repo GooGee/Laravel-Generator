@@ -3,11 +3,11 @@ package com.github.googee.laravelgenerator.services.bridge
 import com.github.googee.laravelgenerator.services.file.FileManager
 import com.github.googee.laravelgenerator.services.view.EditorManager
 
-class Edit(val toJS: ToJS, val em: EditorManager, val fm: FileManager) {
+class Edit(val toJS: ToJS, val em: EditorManager, val fm: FileManager) : IAction {
 
     val action = "edit"
 
-    fun run(request: Request) {
+    override fun run(request: Request) {
         try {
             val file = fm.getFullPath(request.key)
             FileManager.write(file, request.data)

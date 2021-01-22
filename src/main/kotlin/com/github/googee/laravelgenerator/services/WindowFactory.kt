@@ -20,6 +20,7 @@ class WindowFactory : ToolWindowFactory {
         val update = Update(toJS)
         val em = EditorManager(project, toolWindow.contentManager, update)
         val fm = FileManager(project)
+        ServiceManager.register(toJS, em, fm)
         val fromJS = FromJS(browser)
         val load = Load(fm, toJS)
         val panel = WebTab(browser, load, fromJS)
