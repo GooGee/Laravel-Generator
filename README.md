@@ -16,10 +16,10 @@
 <!-- Plugin description -->
 
 
-## Intuitive and efficient code generator for Laravel developers.
+## Intuitive and efficient code generator for Laravel.
 
 
-![GUI](https://github.com/GooGee/Code-Generator/raw/main/image/field.gif)
+![GUI](https://github.com/GooGee/Code-Generator/raw/main/image/file.png)
 
 
 ## Features
@@ -40,6 +40,13 @@
 PHPStorm Menu Bar -> View -> Tool Windows -> Code Generator
 
 [screenshots](https://plugins.jetbrains.com/plugin/15276-laravel-code-generator/where-is-it-)
+
+
+## Guide
+
+- [How to generate files](https://plugins.jetbrains.com/plugin/15276-laravel-code-generator/-generator-)
+
+- [How to create migrations](https://plugins.jetbrains.com/plugin/15276-laravel-code-generator/-migration-)
 
 
 <!-- Plugin description end -->
