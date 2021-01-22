@@ -3,12 +3,24 @@
 # Laravel Code Generator Changelog
 
 
+## [Unreleased]
+### Added
+- Add Route layer
+- Add refresh file button
+
+### Changed
+- Optimize code
+- Save script to file
+- Save template to file
+
+
 ## [1.3.4]
 ### Added
 - Add color button in sidebar
 
 ### Changed
 - Change info about server
+- Hide ColorButton in sidebar
 
 
 ## [1.3.3]
