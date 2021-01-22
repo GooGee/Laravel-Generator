@@ -1,7 +1,7 @@
 package com.github.googee.laravelgenerator.services.view
 
-import com.github.googee.laravelgenerator.services.request.RequestManager
-import com.github.googee.laravelgenerator.services.bridge.ToBrowser
+import com.github.googee.laravelgenerator.services.bridge.FromJS
+import com.github.googee.laravelgenerator.services.bridge.Load
 import com.intellij.ui.jcef.JBCefApp
 import com.intellij.ui.jcef.JBCefBrowser
 import java.awt.Color
@@ -11,8 +11,7 @@ import javax.swing.ImageIcon
 import javax.swing.JLabel
 import javax.swing.JPanel
 
-class WebTab(private val browser: JBCefBrowser, private val tb: ToBrowser, val rm: RequestManager) : JPanel() {
-    private var code: String = ""
+class WebTab(private val browser: JBCefBrowser, private val load: Load, val fromJS: FromJS) : JPanel() {
     private val label: JLabel
 
     init {
@@ -39,7 +38,7 @@ class WebTab(private val browser: JBCefBrowser, private val tb: ToBrowser, val r
     private fun addBrowser() {
         println("add browser")
         this.add(browser.component)
-        code = rm.register()
+        fromJS.makeCode()
         val handler = JCEFLoadHandler(this)
         browser.jbCefClient.addLoadHandler(handler, browser.cefBrowser)
     }
@@ -59,10 +58,8 @@ class WebTab(private val browser: JBCefBrowser, private val tb: ToBrowser, val r
         println("showWeb")
         this.remove(0)
         this.revalidate()
-        val cefBrowser = browser.cefBrowser
-        cefBrowser.executeJavaScript(code, cefBrowser.url, 0)
-
-        tb.load()
+        fromJS.inject()
+        load.run()
     }
 
 }

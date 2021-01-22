@@ -1,7 +1,9 @@
 package com.github.googee.laravelgenerator.services
 
-import com.github.googee.laravelgenerator.services.request.RequestManager
-import com.github.googee.laravelgenerator.services.bridge.ToBrowser
+import com.github.googee.laravelgenerator.services.bridge.FromJS
+import com.github.googee.laravelgenerator.services.bridge.Load
+import com.github.googee.laravelgenerator.services.bridge.ToJS
+import com.github.googee.laravelgenerator.services.bridge.Update
 import com.github.googee.laravelgenerator.services.file.FileManager
 import com.github.googee.laravelgenerator.services.view.BrowserFactory
 import com.github.googee.laravelgenerator.services.view.EditorManager
@@ -13,16 +15,17 @@ import com.intellij.openapi.wm.ToolWindowFactory
 class WindowFactory : ToolWindowFactory {
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        val manager = toolWindow.contentManager
         val browser = BrowserFactory.make()
+        val toJS = ToJS(browser.cefBrowser)
+        val update = Update(toJS)
+        val em = EditorManager(project, toolWindow.contentManager, update)
         val fm = FileManager(project)
-        val tb = ToBrowser(browser.cefBrowser, fm)
-        val em = EditorManager(project, manager, tb)
-        val rm = RequestManager(browser, tb, em, fm)
-        val panel = WebTab(browser, tb, rm)
-        val tab = manager.factory.createContent(panel, "Generator", false)
+        val fromJS = FromJS(browser)
+        val load = Load(fm, toJS)
+        val panel = WebTab(browser, load, fromJS)
+        val tab = toolWindow.contentManager.factory.createContent(panel, "Generator", false)
         tab.isCloseable = false
-        manager.addContent(tab)
+        toolWindow.contentManager.addContent(tab)
     }
 
 }
