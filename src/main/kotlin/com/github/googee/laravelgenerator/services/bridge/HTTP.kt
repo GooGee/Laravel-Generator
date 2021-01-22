@@ -13,16 +13,9 @@ class HTTP(val toJS: ToJS) : IAction {
     private fun post(request: Request): Response {
         var code = HttpURLConnection.HTTP_BAD_REQUEST
         var data = ""
-        if (request.action == "post") {
-            Client.post(request.key, request.data) { status, text ->
-                code = status
-                data = text
-            }
-        } else {
-            Client.get(request.key, request.data) { status, text ->
-                code = status
-                data = text
-            }
+        Client.run(request.key, request.action, request.data) { status, text ->
+            code = status
+            data = text
         }
 
         if (code >= HttpURLConnection.HTTP_BAD_REQUEST) {

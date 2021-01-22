@@ -11,15 +11,7 @@ class Client {
 
     companion object {
 
-        fun get(uri: String, json: String, handler: (Int, String) -> Unit) {
-            run(uri, "GET", json, handler)
-        }
-
-        fun post(uri: String, json: String, handler: (Int, String) -> Unit) {
-            run(uri, "POST", json, handler)
-        }
-
-        fun run(uri: String, method: String, json: String, handler: (Int, String) -> Unit) {
+        fun run(uri: String, method: String, data: String, handler: (Int, String) -> Unit) {
             println(uri)
             var status = HttpURLConnection.HTTP_BAD_REQUEST
             var text = ""
@@ -31,12 +23,12 @@ class Client {
                 ccc.setRequestProperty("Content-Type", "application/json; charset=UTF-8")
                 ccc.setRequestProperty("Accept", "application/json")
 
-                if (json.isNotEmpty()) {
+                if (data.isNotEmpty()) {
                     if (!ccc.doOutput) {
                         ccc.doOutput = true
                     }
                     val os = ccc.outputStream
-                    os.write(json.toByteArray(Charset.forName("UTF-8")))
+                    os.write(data.toByteArray(Charset.forName("UTF-8")))
                     os.close()
                 }
 
