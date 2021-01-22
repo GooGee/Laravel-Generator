@@ -14,8 +14,9 @@ class Response(val action: String, val key: String, val data: String, val messag
             return Response(action, key, data, message, ResponseStatus.OK)
         }
 
-        fun error(action: String, key: String, data: String, message: String): Response {
-            return Response(action, key, data, message, ResponseStatus.Error)
+        fun error(action: String, key: String, data: String, message: String?): Response {
+            val text = message ?: ErrorMessage.Unknown
+            return Response(action, key, data, text, ResponseStatus.Error)
         }
 
     }
