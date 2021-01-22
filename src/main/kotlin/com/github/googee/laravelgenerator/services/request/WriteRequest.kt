@@ -14,7 +14,7 @@ class WriteRequest : Request() {
         val name = "write"
         query.addHandler { text ->
             val json = JSRequest.load(text)
-            val file = fm.getFile(json.key)
+            val file = fm.getFullPath(json.key)
             FileManager.write(file, json.data)
             tb.run(getHandlerName(name), Response.ok(json.key, "").toJSON())
             null

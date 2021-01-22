@@ -46,7 +46,7 @@ class FileManager(val project: Project) {
 
     }
 
-    fun getFile(file: String): String {
+    fun getFullPath(file: String): String {
         return project.basePath + File.separator + file
     }
 

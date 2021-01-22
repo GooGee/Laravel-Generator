@@ -14,7 +14,7 @@ class ReadRequest : Request() {
         val name = "read"
         query.addHandler { text ->
             val json = JSRequest.load(text)
-            val file = fm.getFile(json.key)
+            val file = fm.getFullPath(json.key)
             val content = FileManager.read(file)
             tb.run(getHandlerName(name), Response.ok(json.key, content).toJSON())
             null

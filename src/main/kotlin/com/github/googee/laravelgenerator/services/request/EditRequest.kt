@@ -15,7 +15,7 @@ class EditRequest : Request() {
         val name = "edit"
         query.addHandler { text ->
             val json = JSRequest.load(text)
-            val file = fm.getFile(json.key)
+            val file = fm.getFullPath(json.key)
             FileManager.write(file, json.data)
             em.show(json, file)
             tb.run(getHandlerName(name), Response.ok(json.key, "").toJSON())

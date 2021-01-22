@@ -7,7 +7,7 @@ import org.cef.browser.CefBrowser
 class ToBrowser(private val browser: CefBrowser, private val fm: FileManager) {
 
     fun load() {
-        val file = fm.getFile(FileManager.GeneratorFile)
+        val file = fm.getFullPath(FileManager.GeneratorFile)
         var data = ""
         try {
             val text = FileManager.read(file)
