@@ -12,7 +12,7 @@ class BrowserFactory {
             val uri = System.getenv(WebKey)
             if (uri.isNullOrEmpty()) {
                 val properties = Properties()
-                properties.load(javaClass.getResourceAsStream(FileName))
+                properties.load(object {}.javaClass.getResourceAsStream(FileName))
                 return properties.get(WebKey) as String
             }
             return uri
@@ -20,9 +20,8 @@ class BrowserFactory {
 
         fun make(): JBCefBrowser {
             val uri = getURI()
-            println("WebURI " + uri)
-            val browser = JBCefBrowser(uri)
-            return browser
+            println("WebURI: $uri")
+            return JBCefBrowser(uri)
         }
     }
 }
