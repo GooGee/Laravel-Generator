@@ -4,7 +4,7 @@ import com.github.googee.laravelgenerator.services.bridge.*
 import com.github.googee.laravelgenerator.services.file.FileManager
 import com.github.googee.laravelgenerator.services.view.EditorManager
 
-class ServiceManager {
+class RequestManager {
 
     companion object {
 
@@ -14,29 +14,32 @@ class ServiceManager {
             map[action] = service
         }
 
-        fun run(request: Request) {
+        fun handle(request: Request): Response {
             if (map.containsKey(request.action)) {
                 val action = map.get(request.action)
-                action?.run(request)
+                if (action != null) {
+                    return action.run(request)
+                }
             }
+            return Response.error(request.action, request.key, "", ErrorMessage.BadRequest)
         }
 
-        fun register(toJS: ToJS, em: EditorManager, fm: FileManager) {
+        fun register(em: EditorManager, fm: FileManager) {
 //            add("alert")
-            val edit = Edit(toJS, em, fm)
+            val edit = Edit(em, fm)
             add(edit.action, edit)
 
-            val http = HTTP(toJS)
+            val http = HTTP()
             add("get", http)
             add("post", http)
 
-            val read = Read(toJS, fm)
+            val read = Read(fm)
             add(read.action, read)
 
-            val write = Write(toJS, fm)
+            val write = Write(fm)
             add(write.action, write)
 
-            val refresh = Refresh(toJS)
+            val refresh = Refresh()
             add(refresh.action, refresh)
         }
 
