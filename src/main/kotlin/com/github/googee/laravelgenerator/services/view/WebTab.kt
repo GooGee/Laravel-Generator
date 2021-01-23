@@ -1,6 +1,6 @@
 package com.github.googee.laravelgenerator.services.view
 
-import com.github.googee.laravelgenerator.services.bridge.FromJS
+import com.github.googee.laravelgenerator.services.bridge.CodeFactory
 import com.github.googee.laravelgenerator.services.bridge.Load
 import com.intellij.ui.jcef.JBCefApp
 import com.intellij.ui.jcef.JBCefBrowser
@@ -11,7 +11,7 @@ import javax.swing.ImageIcon
 import javax.swing.JLabel
 import javax.swing.JPanel
 
-class WebTab(private val browser: JBCefBrowser, private val load: Load, val fromJS: FromJS) : JPanel() {
+class WebTab(private val browser: JBCefBrowser, private val load: Load, val fromJS: CodeFactory) : JPanel() {
     private val label: JLabel
 
     init {
@@ -38,7 +38,7 @@ class WebTab(private val browser: JBCefBrowser, private val load: Load, val from
     private fun addBrowser() {
         println("add browser")
         this.add(browser.component)
-        fromJS.makeCode()
+        fromJS.make()
         val handler = JCEFLoadHandler(this)
         browser.jbCefClient.addLoadHandler(handler, browser.cefBrowser)
     }

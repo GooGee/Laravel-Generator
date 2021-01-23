@@ -1,6 +1,6 @@
 package com.github.googee.laravelgenerator.services
 
-import com.github.googee.laravelgenerator.services.bridge.FromJS
+import com.github.googee.laravelgenerator.services.bridge.CodeFactory
 import com.github.googee.laravelgenerator.services.bridge.Load
 import com.github.googee.laravelgenerator.services.bridge.ToJS
 import com.github.googee.laravelgenerator.services.bridge.Update
@@ -17,11 +17,11 @@ class WindowFactory : ToolWindowFactory {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         val browser = BrowserFactory.make()
         val toJS = ToJS(browser.cefBrowser)
-        val update = Update(toJS)
+        val update = Update()
         val em = EditorManager(project, toolWindow.contentManager, update)
         val fm = FileManager(project)
-        ServiceManager.register(toJS, em, fm)
-        val fromJS = FromJS(browser)
+        RequestManager.register(em, fm)
+        val fromJS = CodeFactory(browser)
         val load = Load(fm, toJS)
         val panel = WebTab(browser, load, fromJS)
         val tab = toolWindow.contentManager.factory.createContent(panel, "Generator", false)
