@@ -3,14 +3,9 @@ package com.github.googee.laravelgenerator.services.bridge
 import com.github.googee.laravelgenerator.services.http.Client
 import java.net.HttpURLConnection
 
-class HTTP(val toJS: ToJS) : IAction {
+class HTTP : IAction {
 
-    override fun run(request: Request) {
-        val response = post(request)
-        toJS.send(response)
-    }
-
-    private fun post(request: Request): Response {
+    override fun run(request: Request): Response {
         var code = HttpURLConnection.HTTP_BAD_REQUEST
         var data = ""
         Client.run(request.key, request.action, request.data) { status, text ->
