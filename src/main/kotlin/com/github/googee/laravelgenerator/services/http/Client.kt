@@ -12,13 +12,13 @@ class Client {
     companion object {
 
         fun run(uri: String, method: String, data: String, handler: (Int, String) -> Unit) {
-            println(uri)
+            println("$method $uri")
             var status = HttpURLConnection.HTTP_BAD_REQUEST
             var text = ""
             try {
                 val mURL = URL(uri)
                 val ccc = mURL.openConnection() as HttpURLConnection
-                ccc.requestMethod = method
+                ccc.requestMethod = method.toUpperCase()
                 ccc.connectTimeout = 3111
                 ccc.setRequestProperty("Content-Type", "application/json; charset=UTF-8")
                 ccc.setRequestProperty("Accept", "application/json")
