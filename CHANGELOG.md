@@ -7,6 +7,7 @@
 ### Added
 - Add Route layer
 - Add refresh file button
+- Refresh file after close window
 
 ### Changed
 - Optimize code
