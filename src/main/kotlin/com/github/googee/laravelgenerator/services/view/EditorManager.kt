@@ -5,6 +5,8 @@ import com.github.googee.laravelgenerator.services.bridge.Update
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.project.Project
 import com.intellij.ui.content.ContentManager
+import com.intellij.ui.content.ContentManagerEvent
+import com.intellij.ui.content.ContentManagerListener
 
 class EditorManager(private val project: Project, private val manager: ContentManager, private val update: Update) {
     val map = HashMap<String, EditorTab>()
@@ -26,12 +28,18 @@ class EditorManager(private val project: Project, private val manager: ContentMa
 
     private fun makeEditor(json: Request, file: String) {
         val editor = EditorFactory.make(project, file)
-        val panel = EditorTab(editor, json) { key, text -> update.run(key, text) }
+        val panel = EditorTab(editor, json, update)
         map.set(json.key, panel)
         val tab = manager.factory.createContent(panel, json.key, false)
         tab.isCloseable = true
+        panel.closeHandler = { -> manager.removeContent(tab, true) }
         manager.addContent(tab)
         manager.setSelectedContent(tab)
+        manager.addContentManagerListener(object : ContentManagerListener {
+            override fun contentRemoved(event: ContentManagerEvent) {
+                update.run(json.key, editor.document.text)
+            }
+        })
     }
 
 }
