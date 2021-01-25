@@ -20,4 +20,9 @@
         <listener class="com.github.googee.laravelgenerator.listeners.MyProjectManagerListener"
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
+
+    <projectListeners>
+        <listener class="com.github.googee.laravelgenerator.listeners.WindowListener"
+                  topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener" />
+    </projectListeners>
 </idea-plugin>
