@@ -25,7 +25,8 @@ class EditorManager(private val project: Project, private val manager: ContentMa
     }
 
     private fun makeEditor(json: Request, file: String) {
-        val panel = EditorTab(project, json, file) { key, text -> update.run(key, text) }
+        val editor = EditorFactory.make(project, file)
+        val panel = EditorTab(editor, json) { key, text -> update.run(key, text) }
         map.set(json.key, panel)
         val tab = manager.factory.createContent(panel, json.key, false)
         tab.isCloseable = true

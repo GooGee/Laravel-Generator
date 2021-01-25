@@ -3,18 +3,14 @@ package com.github.googee.laravelgenerator.services.view
 import com.github.googee.laravelgenerator.services.bridge.Request
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.Editor
-import com.intellij.openapi.project.Project
 import java.awt.BorderLayout
 import javax.swing.JButton
 import javax.swing.JPanel
 
-class EditorTab(project: Project, private var data: Request, file: String, save: (key: String, text: String) -> Unit) : JPanel() {
-    private val editor: Editor
+class EditorTab(private var editor: Editor, private var data: Request, save: (key: String, text: String) -> Unit) : JPanel() {
 
     init {
         this.layout = BorderLayout()
-
-        editor = EditorFactory.make(project, file)
 
         val saveButton = JButton("Save")
         saveButton.addActionListener { e ->
