@@ -17,9 +17,9 @@ class WindowFactory : ToolWindowFactory {
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
         val browser = BrowserFactory.make()
         val toJS = ToJS(browser.cefBrowser)
-        val update = Update(toJS)
-        val em = EditorManager(project, toolWindow.contentManager, update)
         val fm = FileManager(project)
+        val update = Update(fm, toJS)
+        val em = EditorManager(project, toolWindow.contentManager, update)
         RequestManager.register(em, fm)
         val fromJS = CodeFactory(browser)
         val load = Load(fm, toJS)
