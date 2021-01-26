@@ -6,7 +6,7 @@ import com.github.googee.laravelgenerator.services.file.FileManager
 
 class Read(val fm: FileManager) : IAction {
 
-    val action = "read"
+    override val action = "read"
 
     override fun run(request: Request): Response {
         return try {

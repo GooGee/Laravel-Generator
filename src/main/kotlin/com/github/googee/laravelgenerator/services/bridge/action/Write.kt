@@ -6,7 +6,7 @@ import com.github.googee.laravelgenerator.services.file.FileManager
 
 class Write(val fm: FileManager) : IAction {
 
-    val action = "write"
+    override val action = "write"
 
     override fun run(request: Request): Response {
         return try {

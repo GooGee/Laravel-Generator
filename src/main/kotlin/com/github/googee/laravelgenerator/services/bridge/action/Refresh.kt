@@ -6,7 +6,7 @@ import com.github.googee.laravelgenerator.services.file.FileManager
 
 class Refresh : IAction {
 
-    val action = "refresh"
+    override val action = "refresh"
 
     override fun run(request: Request): Response {
         FileManager.refresh()

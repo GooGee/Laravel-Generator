@@ -7,7 +7,7 @@ import com.github.googee.laravelgenerator.services.view.EditorManager
 
 class Edit(val em: EditorManager, val fm: FileManager) : IAction {
 
-    val action = "edit"
+    override val action = "edit"
 
     override fun run(request: Request): Response {
         return try {
