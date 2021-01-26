@@ -1,6 +1,8 @@
 package com.github.googee.laravelgenerator.services
 
-import com.github.googee.laravelgenerator.services.bridge.*
+import com.github.googee.laravelgenerator.services.bridge.action.*
+import com.github.googee.laravelgenerator.services.bridge.Request
+import com.github.googee.laravelgenerator.services.bridge.Response
 import com.github.googee.laravelgenerator.services.file.FileManager
 import com.github.googee.laravelgenerator.services.view.EditorManager
 
