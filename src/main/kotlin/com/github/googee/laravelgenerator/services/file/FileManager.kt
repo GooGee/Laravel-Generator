@@ -35,7 +35,7 @@ class FileManager(val project: Project) {
             val path = Paths.get(file)
             Files.createDirectories(path.parent)
             val writer = PrintWriter(path.toString())
-            writer.println(text)
+            writer.print(text)
             writer.close()
         }
 
