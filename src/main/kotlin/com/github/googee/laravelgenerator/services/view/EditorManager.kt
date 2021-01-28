@@ -23,8 +23,6 @@ class EditorManager(private val project: Project, private val manager: ContentMa
                 if (tab == null) {
                     makeEditor(json, file)
                 } else {
-                    val panel = map.get(json.key)
-                    panel?.update(json)
                     manager.setSelectedContent(tab)
                 }
             }
