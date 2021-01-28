@@ -3,6 +3,7 @@ package com.github.googee.laravelgenerator.services.view
 import com.github.googee.laravelgenerator.services.bridge.Request
 import com.github.googee.laravelgenerator.services.bridge.Update
 import com.intellij.openapi.application.ApplicationManager
+import com.intellij.openapi.fileEditor.FileDocumentManager
 import com.intellij.openapi.project.Project
 import com.intellij.ui.content.ContentManager
 import com.intellij.ui.content.ContentManagerEvent
@@ -37,6 +38,7 @@ class EditorManager(private val project: Project, private val manager: ContentMa
         manager.setSelectedContent(tab)
         manager.addContentManagerListener(object : ContentManagerListener {
             override fun contentRemoved(event: ContentManagerEvent) {
+                FileDocumentManager.getInstance().saveDocument(editor.document)
                 update.run(json.key, editor.document.text)
             }
         })

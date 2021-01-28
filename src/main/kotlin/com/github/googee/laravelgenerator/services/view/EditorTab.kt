@@ -4,6 +4,7 @@ import com.github.googee.laravelgenerator.services.bridge.Request
 import com.github.googee.laravelgenerator.services.bridge.Update
 import com.intellij.openapi.application.ApplicationManager
 import com.intellij.openapi.editor.Editor
+import com.intellij.openapi.fileEditor.FileDocumentManager
 import java.awt.BorderLayout
 import javax.swing.JButton
 import javax.swing.JPanel
@@ -16,6 +17,7 @@ class EditorTab(private var editor: Editor, private var data: Request, update: U
 
         val saveButton = JButton("Save")
         saveButton.addActionListener { e ->
+            FileDocumentManager.getInstance().saveDocument(editor.document)
             update.run(data.key, editor.document.text)
         }
 
