@@ -12,6 +12,13 @@ import com.intellij.ui.content.ContentManagerListener
 class EditorManager(private val project: Project, private val manager: ContentManager, private val update: Update) {
     val map = HashMap<String, EditorTab>()
 
+    fun has(file: String): Boolean {
+        if (manager.findContent(file) == null) {
+            return false
+        }
+        return true
+    }
+
     fun show(json: Request, file: String) {
         ApplicationManager.getApplication().invokeLater(Runnable() {
             run() {
