@@ -12,9 +12,8 @@ class Edit(val em: EditorManager, val fm: FileManager) : IAction {
     override fun run(request: Request): Response {
         return try {
             val file = fm.getFullPath(request.key)
-            if (!em.has(file)) {
+            if (FileManager.isFile(file) == false) {
                 FileManager.write(file, request.data)
-                FileManager.refresh()
             }
             em.show(request, file)
             Response.ok(action, request.key, request.data)

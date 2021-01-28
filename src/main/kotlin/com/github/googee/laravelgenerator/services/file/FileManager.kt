@@ -16,6 +16,10 @@ class FileManager(val project: Project) {
 
         const val GeneratorFile = "code-generator.json"
 
+        fun isFile(file: String): Boolean {
+            return File(file).isFile
+        }
+
         fun read(file: String): String {
             val stream = FileInputStream(file)
             return read(stream)
