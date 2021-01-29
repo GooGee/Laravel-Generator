@@ -2,9 +2,11 @@ package com.github.googee.laravelgenerator.services.http
 
 import com.github.googee.laravelgenerator.services.ErrorMessage
 import com.google.common.io.CharStreams
+import java.io.FileOutputStream
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+import java.nio.channels.Channels
 import java.nio.charset.Charset
 
 class Client {
@@ -44,6 +46,11 @@ class Client {
             }
 
             handler(status, text)
+        }
+
+        fun copy(uri: String, file: String) {
+            val channel = Channels.newChannel(URL(uri).openStream())
+            FileOutputStream(file).channel.transferFrom(channel, 0, Long.MAX_VALUE)
         }
 
     }
