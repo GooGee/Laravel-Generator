@@ -6,9 +6,11 @@ class ErrorMessage {
 
         const val BadRequest = "Bad Request"
         const val OK = "OK"
-        const val ParseJSON = "Error parsing JSON data"
         const val Unknown = "Unknown Error"
 
+        fun check(message: String?): String {
+            return message ?: Unknown
+        }
     }
 
 }

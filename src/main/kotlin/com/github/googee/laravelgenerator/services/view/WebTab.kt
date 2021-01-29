@@ -36,7 +36,6 @@ class WebTab(private val browser: JBCefBrowser, private val load: Load, val from
     }
 
     private fun addBrowser() {
-        println("add browser")
         this.add(browser.component)
         fromJS.make()
         val handler = JCEFLoadHandler(this)
@@ -49,13 +48,11 @@ class WebTab(private val browser: JBCefBrowser, private val load: Load, val from
     }
 
     fun showError(text: String) {
-        println("showError")
         println(text)
         label.text = text
     }
 
     fun showWeb() {
-        println("showWeb")
         this.remove(0)
         this.revalidate()
         fromJS.inject()

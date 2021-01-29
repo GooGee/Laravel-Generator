@@ -1,6 +1,6 @@
 package com.github.googee.laravelgenerator.services.view
 
-import com.github.googee.laravelgenerator.services.view.WebTab
+import com.github.googee.laravelgenerator.services.ErrorMessage
 import org.cef.browser.CefBrowser
 import org.cef.browser.CefFrame
 import org.cef.handler.CefLoadHandler
@@ -15,7 +15,7 @@ class JCEFLoadHandler(val tab: WebTab) : CefLoadHandler {
     }
 
     override fun onLoadError(p0: CefBrowser?, p1: CefFrame?, code: CefLoadHandler.ErrorCode?, text: String?, url: String?) {
-        tab.showError(text ?: "Error")
+        tab.showError(ErrorMessage.check(text))
     }
 
     override fun onLoadEnd(p0: CefBrowser?, p1: CefFrame?, httpStatusCode: Int) {

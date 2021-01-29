@@ -15,8 +15,7 @@ class Response(val action: String, val key: String, val data: String, val messag
         }
 
         fun error(action: String, key: String, data: String, message: String?, status: Int = ResponseStatus.Error): Response {
-            val text = message ?: ErrorMessage.Unknown
-            return Response(action, key, data, text, status)
+            return Response(action, key, data, ErrorMessage.check(message), status)
         }
 
     }
