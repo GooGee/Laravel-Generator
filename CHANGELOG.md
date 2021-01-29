@@ -5,6 +5,7 @@
 
 ## [Unreleased]
 ### Added
+- Add d.ts for JS script
 - Add Route layer
 - Add refresh file button
 - Refresh file after close window
