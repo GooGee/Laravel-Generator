@@ -23,11 +23,10 @@ class RequestManager {
                     return action.run(request)
                 }
             }
-            return Response.error(request.action, request.key, "", ErrorMessage.BadRequest)
+            return Response.error(request.action, request.key, "", ErrorMessage.ActionNotFound)
         }
 
         fun register(em: EditorManager, fm: FileManager) {
-//            add("alert")
             val edit = Edit(em, fm)
             add(edit.action, edit)
 
