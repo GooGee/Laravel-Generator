@@ -20,6 +20,11 @@ class FileManager(val project: Project) {
             return File(file).isFile
         }
 
+        fun makeFolder(file: String) {
+            val path = Paths.get(file)
+            Files.createDirectories(path.parent)
+        }
+
         fun read(file: String): String {
             val stream = FileInputStream(file)
             return read(stream)

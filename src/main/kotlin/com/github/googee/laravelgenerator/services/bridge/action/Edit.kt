@@ -35,6 +35,7 @@ class Edit(val em: EditorManager, val fm: FileManager) : IAction {
         if (FileManager.isFile(file)) {
             return
         }
+        FileManager.makeFolder(file)
         Client.copy(URI, file)
     }
 
