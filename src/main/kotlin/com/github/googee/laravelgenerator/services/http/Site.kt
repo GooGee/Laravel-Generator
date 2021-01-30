@@ -5,10 +5,10 @@ import com.github.googee.laravelgenerator.services.Version
 
 class Site {
     companion object {
-        const val WebKey = "WebURI"
+        const val Key = "URI"
 
         fun getURI(): String {
-            val uri = System.getenv(WebKey)
+            val uri = System.getenv(Key)
             if (uri.isNullOrEmpty()) {
                 return Constant.URI + "/dist" + Version.get()
             }

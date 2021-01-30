@@ -7,7 +7,7 @@ class BrowserFactory {
     companion object {
         fun make(): JBCefBrowser {
             val uri = Site.getURI()
-            println("WebURI: $uri")
+            println("URI: $uri")
             return JBCefBrowser(uri)
         }
     }
