@@ -16,7 +16,7 @@ class Client {
         fun run(uri: String, method: String, data: String, handler: (Int, String) -> Unit) {
             println("$method $uri")
             var status = HttpURLConnection.HTTP_BAD_REQUEST
-            var message: String? = ""
+            var text = ""
             try {
                 val mURL = URL(uri)
                 val ccc = mURL.openConnection() as HttpURLConnection
@@ -36,16 +36,16 @@ class Client {
 
                 status = ccc.responseCode
                 if (status >= HttpURLConnection.HTTP_BAD_REQUEST) {
-                    message = ccc.responseMessage
+                    text = ccc.responseMessage
                 } else {
                     val reader = InputStreamReader(ccc.inputStream, "UTF-8")
-                    message = CharStreams.toString(reader)
+                    text = CharStreams.toString(reader)
                 }
             } catch (exception: Exception) {
-                message = exception.message
+                text = ErrorMessage.check(exception.message)
             }
 
-            handler(status, ErrorMessage.check(message))
+            handler(status, text)
         }
 
         fun copy(uri: String, file: String) {
