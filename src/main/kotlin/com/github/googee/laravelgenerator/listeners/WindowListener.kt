@@ -1,5 +1,6 @@
 package com.github.googee.laravelgenerator.listeners
 
+import com.github.googee.laravelgenerator.services.Constant
 import com.github.googee.laravelgenerator.services.file.FileManager
 import com.intellij.openapi.wm.ToolWindowManager
 import com.intellij.openapi.wm.ex.ToolWindowManagerListener
@@ -10,14 +11,22 @@ class WindowListener : ToolWindowManagerListener {
     override fun stateChanged(toolWindowManager: ToolWindowManager) {
         super.stateChanged(toolWindowManager)
 
-        if (toolWindowManager.activeToolWindowId == "Code Generator") {
+        val tw = toolWindowManager.getToolWindow(Constant.CG)
+        if (tw == null) {
+            return
+        }
+
+        if (tw.isActive) {
             active = true
-        } else {
+        }
+
+        if (tw.isVisible == false) {
             if (active) {
                 FileManager.refresh()
             }
             active = false
         }
+
     }
 
 }
