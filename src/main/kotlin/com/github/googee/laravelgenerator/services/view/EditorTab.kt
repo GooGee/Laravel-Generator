@@ -7,6 +7,7 @@ import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.fileEditor.FileDocumentManager
 import java.awt.BorderLayout
 import javax.swing.JButton
+import javax.swing.JLabel
 import javax.swing.JPanel
 
 class EditorTab(private var editor: Editor, private var data: Request, update: Update) : JPanel() {
@@ -14,6 +15,8 @@ class EditorTab(private var editor: Editor, private var data: Request, update: U
 
     init {
         this.layout = BorderLayout()
+
+        val label= JLabel("click Save button after changing text")
 
         val saveButton = JButton("Save")
         saveButton.addActionListener { e ->
@@ -27,6 +30,7 @@ class EditorTab(private var editor: Editor, private var data: Request, update: U
         }
 
         val panel = JPanel()
+        panel.add(label)
         panel.add(saveButton)
         panel.add(close)
 
