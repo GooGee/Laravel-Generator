@@ -24,6 +24,13 @@ class FileManager(val project: Project) {
             Files.createDirectories(path.parent)
         }
 
+        fun move(file: String, destination: String) {
+            val old = File(file)
+            val new = File(destination)
+            makeFolder(destination)
+            old.renameTo(new)
+        }
+
         fun read(file: String): String {
             val stream = FileInputStream(file)
             return read(stream)
