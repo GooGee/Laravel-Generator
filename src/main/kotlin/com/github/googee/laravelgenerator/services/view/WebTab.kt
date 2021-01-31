@@ -11,7 +11,7 @@ import javax.swing.ImageIcon
 import javax.swing.JLabel
 import javax.swing.JPanel
 
-class WebTab(private val browser: JBCefBrowser, private val load: Load, val fromJS: CodeFactory) : JPanel() {
+class WebTab(private val browser: JBCefBrowser, private val load: Load, val codeFactory: CodeFactory) : JPanel() {
     private val label: JLabel
 
     init {
@@ -37,7 +37,7 @@ class WebTab(private val browser: JBCefBrowser, private val load: Load, val from
 
     private fun addBrowser() {
         this.add(browser.component)
-        fromJS.make()
+        codeFactory.make()
         val handler = JCEFLoadHandler(this)
         browser.jbCefClient.addLoadHandler(handler, browser.cefBrowser)
     }
@@ -55,7 +55,7 @@ class WebTab(private val browser: JBCefBrowser, private val load: Load, val from
     fun showWeb() {
         this.remove(0)
         this.revalidate()
-        fromJS.inject()
+        codeFactory.inject()
         load.run()
     }
 
