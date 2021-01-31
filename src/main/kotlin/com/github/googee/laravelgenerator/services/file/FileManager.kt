@@ -1,5 +1,6 @@
 package com.github.googee.laravelgenerator.services.file
 
+import com.github.googee.laravelgenerator.services.Constant
 import com.google.common.io.CharStreams
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.LocalFileSystem
@@ -13,8 +14,6 @@ import java.nio.file.Paths
 class FileManager(val project: Project) {
 
     companion object {
-
-        const val GeneratorFile = "code-generator.json"
 
         fun isFile(file: String): Boolean {
             return File(file).isFile
@@ -59,4 +58,7 @@ class FileManager(val project: Project) {
         return project.basePath + File.separator + file
     }
 
+    fun getCGFile(file: String): String {
+        return getFullPath(Constant.CGFolder + File.separator + file)
+    }
 }

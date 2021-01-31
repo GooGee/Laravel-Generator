@@ -7,8 +7,10 @@ class Load(val fm: FileManager, val toJS: ToJS) {
     val action = "load"
     val key = "project"
 
+    val FileName = "data.json"
+
     fun run() {
-        val file = fm.getFullPath(FileManager.GeneratorFile)
+        val file = fm.getCGFile(FileName)
         try {
             val text = FileManager.read(file)
             val response = Response.ok(action, key, text)
