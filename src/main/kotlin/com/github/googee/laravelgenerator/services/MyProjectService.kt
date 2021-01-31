@@ -4,6 +4,7 @@ import com.intellij.openapi.project.Project
 import com.github.googee.laravelgenerator.MyBundle
 import com.github.googee.laravelgenerator.services.bridge.*
 import com.github.googee.laravelgenerator.services.file.FileManager
+import com.github.googee.laravelgenerator.services.file.Ignore
 import com.github.googee.laravelgenerator.services.view.BrowserFactory
 
 class MyProjectService(project: Project) {
@@ -27,5 +28,7 @@ class MyProjectService(project: Project) {
     init {
         println(MyBundle.message("projectService", project.name))
         _instance = this
+
+        Ignore(fm).make()
     }
 }
