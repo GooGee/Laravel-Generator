@@ -5,9 +5,12 @@
 
 ## [Unreleased]
 ### Added
+- Add Clone for Entity and Layer
+- Add backup json file
 - Add d.ts for JS script
 - Add Route layer
 - Add refresh file button
+- Add TestAPI layer
 - Refresh file after close window
 
 ### Changed
