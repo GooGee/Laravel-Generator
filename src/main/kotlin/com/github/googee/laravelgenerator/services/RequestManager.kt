@@ -34,6 +34,9 @@ class RequestManager {
             add("get", http)
             add("post", http)
 
+            val move = Move(fm)
+            add(move.action, move)
+
             val read = Read(fm)
             add(read.action, read)
 
