@@ -1,6 +1,7 @@
 package com.github.googee.laravelgenerator.listeners
 
 import com.github.googee.laravelgenerator.services.Constant
+import com.github.googee.laravelgenerator.services.MyProjectService
 import com.github.googee.laravelgenerator.services.file.FileManager
 import com.intellij.openapi.wm.ToolWindowManager
 import com.intellij.openapi.wm.ex.ToolWindowManagerListener
@@ -22,6 +23,7 @@ class WindowListener : ToolWindowManagerListener {
 
         if (tw.isVisible == false) {
             if (active) {
+                MyProjectService.instance.save.run()
                 FileManager.refresh()
             }
             active = false
