@@ -7,9 +7,8 @@
 ### Added
 - Add Clone for Entity and Layer
 - Add backup json file
-- Add d.ts for JS script
+- Add index.d.ts for JavaScript
 - Add Route layer
-- Add refresh file button
 - Add TestAPI layer
 - Refresh file after close window
 
