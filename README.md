@@ -18,20 +18,18 @@
 
 ## Intuitive and efficient code generator for Laravel.
 
-
 ![GUI](https://github.com/GooGee/Code-Generator/raw/main/image/file.png)
 
 
 ## Features
 
-- Custom layer (Controller, Model, Repository, etc.)
-- Custom template (with syntax: `for`, `if`, etc.)
 - Convert Database schema to Laravel Migration
 - Run artisan command
 - Design database tables
 - Define model factories
 - Manage model relations
-- Make field validation rules
+- Custom layer (Controller, Model, Repository, etc.)
+- Custom template (with syntax: `for`, `if`, etc.)
 - Generate Controller, Migration, Model, Route, Test, etc.
 
 
