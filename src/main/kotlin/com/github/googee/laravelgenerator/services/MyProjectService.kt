@@ -4,7 +4,6 @@ import com.intellij.openapi.project.Project
 import com.github.googee.laravelgenerator.MyBundle
 import com.github.googee.laravelgenerator.services.bridge.*
 import com.github.googee.laravelgenerator.services.file.FileManager
-import com.github.googee.laravelgenerator.services.file.Ignore
 import com.github.googee.laravelgenerator.services.view.BrowserFactory
 
 class MyProjectService(project: Project) {
@@ -14,7 +13,7 @@ class MyProjectService(project: Project) {
     val fm = FileManager(project)
     val toJS = ToJS(browser.cefBrowser)
     val load = Load(fm, toJS)
-    val save = Save(toJS)
+    val save = Save(toJS, fm)
     val update = Update(fm, toJS)
 
     companion object {
@@ -28,7 +27,5 @@ class MyProjectService(project: Project) {
     init {
         println(MyBundle.message("projectService", project.name))
         _instance = this
-
-        Ignore(fm).make()
     }
 }

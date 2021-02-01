@@ -1,7 +1,6 @@
 package com.github.googee.laravelgenerator.services.bridge
 
 import com.github.googee.laravelgenerator.services.file.FileManager
-import java.nio.file.Files
 
 class Load(val fm: FileManager, val toJS: ToJS) {
 

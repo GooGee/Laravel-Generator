@@ -2,6 +2,7 @@ package com.github.googee.laravelgenerator.services.http
 
 import com.github.googee.laravelgenerator.services.ErrorMessage
 import com.google.common.io.CharStreams
+import com.jetbrains.rd.util.printlnError
 import java.io.FileOutputStream
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
@@ -43,6 +44,7 @@ class Client {
                 }
             } catch (exception: Exception) {
                 text = ErrorMessage.check(exception.message)
+                printlnError(text)
             }
 
             handler(status, text)
