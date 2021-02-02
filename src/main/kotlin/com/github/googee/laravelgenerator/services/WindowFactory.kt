@@ -12,7 +12,7 @@ class WindowFactory : ToolWindowFactory {
         val service = MyProjectService.instance
         val em = EditorManager(project, toolWindow.contentManager, service.update)
         RequestManager.register(em, service.fm)
-        val panel = WebTab(service.browser, service.load, service.codeFactory)
+        val panel = WebTab(service.browser, service.load, service.codeFactory, service.toJS)
         val tab = toolWindow.contentManager.factory.createContent(panel, "Generator", false)
         tab.isCloseable = false
         toolWindow.contentManager.addContent(tab)
