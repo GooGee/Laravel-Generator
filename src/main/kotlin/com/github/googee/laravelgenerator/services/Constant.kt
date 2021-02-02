@@ -8,7 +8,7 @@ class Constant {
 
         const val CGFolder = "code-generator"
 
-        const val URI = "https://googee.github.io/Code-Generator"
+        const val URI = "https://googee.github.io/Code-Generator-Page"
 
     }
 
