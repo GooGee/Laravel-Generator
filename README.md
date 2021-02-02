@@ -37,14 +37,14 @@
 
 PHPStorm Menu Bar -> View -> Tool Windows -> Code Generator
 
-[screenshots](https://plugins.jetbrains.com/plugin/15276-laravel-code-generator/where-is-it-)
+[screenshots](https://plugins.jetbrains.com/plugin/15276-laravel-generator/where-is-it-)
 
 
 ## Guide
 
-- [How to generate files](https://plugins.jetbrains.com/plugin/15276-laravel-code-generator/-generator-)
+- [How to generate files](https://plugins.jetbrains.com/plugin/15276-laravel-generator/-generator-)
 
-- [How to create migrations](https://plugins.jetbrains.com/plugin/15276-laravel-code-generator/-migration-)
+- [How to create migrations](https://plugins.jetbrains.com/plugin/15276-laravel-generator/-migration-)
 
 
 <!-- Plugin description end -->
