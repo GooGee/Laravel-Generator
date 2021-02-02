@@ -30,7 +30,7 @@
 - Manage model relations
 - Custom layer (Controller, Model, Repository, etc.)
 - Custom template (with syntax: `for`, `if`, etc.)
-- Generate Controller, Migration, Model, Route, Test, etc.
+- Generate Controller, Migration, Model, Test, etc.
 
 
 ## Where is it?

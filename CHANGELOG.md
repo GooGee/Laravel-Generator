@@ -8,7 +8,6 @@
 - Add Clone for Entity and Layer
 - Add backup json file
 - Add index.d.ts for JavaScript
-- Add Route layer
 - Add TestAPI layer
 - Refresh file after close window
 
