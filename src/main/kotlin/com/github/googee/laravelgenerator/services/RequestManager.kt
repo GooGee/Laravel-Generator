@@ -37,6 +37,9 @@ class RequestManager {
             val move = Move(fm)
             add(move.action, move)
 
+            val open = Open()
+            add(open.action, open)
+
             val read = Read(fm)
             add(read.action, read)
 
