@@ -5,10 +5,19 @@
 
 ## [Unreleased]
 ### Added
+- Add open browser
+
+### Changed
+- Open URL in default browser
+
+
+## [2.0.16]
+### Added
 - Add Clone for Entity and Layer
 - Add backup json file
 - Add index.d.ts for JavaScript
 - Add TestAPI layer
+- Auto set model faker
 - Refresh file after close window
 
 ### Changed
