@@ -8,7 +8,7 @@ import com.github.googee.laravelgenerator.services.view.EditorManager
 
 class Edit(val em: EditorManager, val fm: FileManager) : IAction {
 
-    override val action = "edit"
+    override val action = ActionEnum.edit
 
     override fun run(request: Request): Response {
         return try {
@@ -18,9 +18,9 @@ class Edit(val em: EditorManager, val fm: FileManager) : IAction {
                 FileManager.write(file, request.data)
             }
             em.show(request, file)
-            Response.ok(action, request.key, request.data)
+            Response.ok(action.name, request.key, request.data)
         } catch (exception: Exception) {
-            Response.error(action, request.key, "", exception.message)
+            Response.error(action.name, request.key, "", exception.message)
         }
     }
 

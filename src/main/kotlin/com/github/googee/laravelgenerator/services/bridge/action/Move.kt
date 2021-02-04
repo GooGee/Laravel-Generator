@@ -6,16 +6,16 @@ import com.github.googee.laravelgenerator.services.file.FileManager
 
 class Move(val fm: FileManager) : IAction {
 
-    override val action = "move"
+    override val action = ActionEnum.move
 
     override fun run(request: Request): Response {
         return try {
             val old = fm.getFullPath(request.key)
             val new = fm.getFullPath(request.data)
             FileManager.move(old, new)
-            Response.ok(action, request.key, request.data)
+            Response.ok(action.name, request.key, request.data)
         } catch (exception: Exception) {
-            Response.error(action, request.key, "", exception.message)
+            Response.error(action.name, request.key, "", exception.message)
         }
     }
 

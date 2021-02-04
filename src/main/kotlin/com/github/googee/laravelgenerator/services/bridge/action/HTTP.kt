@@ -7,7 +7,7 @@ import java.net.HttpURLConnection
 
 class HTTP : IAction {
 
-    override val action = "get"
+    override val action = ActionEnum.get
 
     override fun run(request: Request): Response {
         var code = HttpURLConnection.HTTP_BAD_REQUEST

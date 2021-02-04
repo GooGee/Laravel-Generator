@@ -6,11 +6,11 @@ import com.github.googee.laravelgenerator.services.file.FileManager
 
 class Refresh : IAction {
 
-    override val action = "refresh"
+    override val action = ActionEnum.refresh
 
     override fun run(request: Request): Response {
         FileManager.refresh()
-        return Response.ok(action, "", "")
+        return Response.ok(action.name, "", "")
     }
 
 }

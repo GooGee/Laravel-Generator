@@ -1,10 +1,11 @@
 package com.github.googee.laravelgenerator.services.bridge
 
+import com.github.googee.laravelgenerator.services.bridge.action.ActionEnum
 import com.github.googee.laravelgenerator.services.file.FileManager
 
 class Load(val fm: FileManager, val toJS: ToJS) {
 
-    val action = "load"
+    val action = ActionEnum.load
     val key = "project"
 
     val FileName = "data.json"
@@ -14,10 +15,10 @@ class Load(val fm: FileManager, val toJS: ToJS) {
         try {
             move(file)
             val text = FileManager.read(file)
-            val response = Response.ok(action, key, text)
+            val response = Response.ok(action.name, key, text)
             toJS.send(response)
         } catch (exception: Exception) {
-            val response = Response.error(action, key, "", exception.message)
+            val response = Response.error(action.name, key, "", exception.message)
             toJS.send(response)
         }
     }

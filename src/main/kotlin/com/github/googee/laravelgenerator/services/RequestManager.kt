@@ -28,26 +28,26 @@ class RequestManager {
 
         fun register(em: EditorManager, fm: FileManager) {
             val edit = Edit(em, fm)
-            add(edit.action, edit)
+            add(edit.action.name, edit)
 
             val http = HTTP()
-            add("get", http)
-            add("post", http)
+            add(ActionEnum.get.name, http)
+            add(ActionEnum.post.name, http)
 
             val move = Move(fm)
-            add(move.action, move)
+            add(move.action.name, move)
 
             val open = Open()
-            add(open.action, open)
+            add(open.action.name, open)
 
             val read = Read(fm)
-            add(read.action, read)
+            add(read.action.name, read)
 
             val write = Write(fm)
-            add(write.action, write)
+            add(write.action.name, write)
 
             val refresh = Refresh()
-            add(refresh.action, refresh)
+            add(refresh.action.name, refresh)
         }
 
     }
