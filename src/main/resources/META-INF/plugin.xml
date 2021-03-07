@@ -8,12 +8,14 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
+        <fileEditorProvider order="first" implementation="com.github.googee.laravelgenerator.editor.GeneratorProvider"/>
+        <fileType implementationClass="com.github.googee.laravelgenerator.editor.GeneratorFileType"
+                  name="Code Generator" fieldName="instance"/>
+        <virtualFileSystem implementationClass="com.github.googee.laravelgenerator.editor.GeneratorVirtualFileSystem"
+                           key="cg"/>
+
         <applicationService serviceImplementation="com.github.googee.laravelgenerator.services.MyApplicationService"/>
         <projectService serviceImplementation="com.github.googee.laravelgenerator.services.MyProjectService"/>
-        <toolWindow id="Code Generator"
-                    anchor="bottom"
-                    canCloseContents="true"
-                    factoryClass="com.github.googee.laravelgenerator.services.WindowFactory"/>
     </extensions>
 
     <applicationListeners>
@@ -21,8 +23,10 @@
                   topic="com.intellij.openapi.project.ProjectManagerListener"/>
     </applicationListeners>
 
-    <projectListeners>
-        <listener class="com.github.googee.laravelgenerator.listeners.WindowListener"
-                  topic="com.intellij.openapi.wm.ex.ToolWindowManagerListener" />
-    </projectListeners>
+    <actions>
+        <action id="com.github.googee.laravelgenerator.action.ShowGeneratorAction" icon="/image/icon.svg"
+                class="com.github.googee.laravelgenerator.action.ShowGeneratorAction" text="Code Generator">
+            <add-to-group group-id="ToolsMenu" anchor="after" relative-to-action="ExternalToolsGroup"/>
+        </action>
+    </actions>
 </idea-plugin>

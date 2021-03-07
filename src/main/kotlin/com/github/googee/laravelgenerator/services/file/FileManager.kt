@@ -4,6 +4,9 @@ import com.github.googee.laravelgenerator.services.Constant
 import com.google.common.io.CharStreams
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.LocalFileSystem
+import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.openapi.vfs.VirtualFileManager
+import org.jetbrains.annotations.Nullable
 import java.io.File
 import java.io.FileInputStream
 import java.io.InputStreamReader
@@ -14,6 +17,20 @@ import java.nio.file.Paths
 class FileManager(val project: Project) {
 
     companion object {
+
+        const val Folder = "code-generator"
+
+        fun getFullPath(file: String, project: Project): String {
+            return project.basePath + File.separator + file
+        }
+
+        fun getGeneratorFile(file: String, project: Project): String {
+            return getFullPath(Folder + File.separator + file, project)
+        }
+
+        fun getVF(file: String): @Nullable VirtualFile? {
+            return VirtualFileManager.getInstance().refreshAndFindFileByNioPath(Paths.get(file))
+        }
 
         fun isFile(file: String): Boolean {
             return File(file).isFile
@@ -58,7 +75,6 @@ class FileManager(val project: Project) {
             println("-- refresh --")
             LocalFileSystem.getInstance().refresh(true)
         }
-
     }
 
     fun getFullPath(file: String): String {
@@ -66,6 +82,6 @@ class FileManager(val project: Project) {
     }
 
     fun getCGFile(file: String): String {
-        return getFullPath(Constant.CGFolder + File.separator + file)
+        return getFullPath(Folder + File.separator + file)
     }
 }

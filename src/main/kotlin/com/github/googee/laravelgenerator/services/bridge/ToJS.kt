@@ -12,7 +12,7 @@ class ToJS(private val browser: CefBrowser) {
     }
 
     fun send(response: Response) {
-        println("call JS (${response.action}, ${response.key})")
+        println("-- to JS (${response.action}, ${response.key})")
         if (!ready) {
             println("not ready")
             return

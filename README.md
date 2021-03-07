@@ -37,7 +37,7 @@
 
 PHPStorm Menu Bar -> View -> Tool Windows -> Code Generator
 
-[screenshots](https://plugins.jetbrains.com/plugin/15276-laravel-generator/where-is-it-)
+![GUI](https://github.com/GooGee/Code-Generator/raw/main/image/phpstorm.png)
 
 
 ## Guide

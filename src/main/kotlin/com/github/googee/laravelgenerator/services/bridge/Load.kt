@@ -11,6 +11,7 @@ class Load(val fm: FileManager, val toJS: ToJS) {
     val FileName = "data.json"
 
     fun run() {
+        toJS.ready = true
         val file = fm.getCGFile(FileName)
         try {
             move(file)

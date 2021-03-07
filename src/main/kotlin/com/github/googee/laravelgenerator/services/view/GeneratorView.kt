@@ -1,8 +1,5 @@
 package com.github.googee.laravelgenerator.services.view
 
-import com.github.googee.laravelgenerator.services.bridge.CodeFactory
-import com.github.googee.laravelgenerator.services.bridge.Load
-import com.github.googee.laravelgenerator.services.bridge.ToJS
 import com.intellij.ui.jcef.JBCefApp
 import com.intellij.ui.jcef.JBCefBrowser
 import java.awt.Color
@@ -12,8 +9,7 @@ import javax.swing.ImageIcon
 import javax.swing.JLabel
 import javax.swing.JPanel
 
-class WebTab(private val browser: JBCefBrowser, private val load: Load, val codeFactory: CodeFactory, val toJS: ToJS) :
-    JPanel() {
+class GeneratorView(val browser: JBCefBrowser) : JPanel() {
     private val label: JLabel
 
     init {
@@ -25,23 +21,16 @@ class WebTab(private val browser: JBCefBrowser, private val load: Load, val code
         label.alignmentX = Component.CENTER_ALIGNMENT
         this.add(label)
 
-        check()
-    }
-
-    private fun check() {
-        if (!JBCefApp.isSupported()) {
-            showError("Error: JCEF is required")
-            return
-        }
-
         addBrowser()
     }
 
     private fun addBrowser() {
+        if (JBCefApp.isSupported() == false) {
+            showError("Error: JCEF is required")
+            return
+        }
+
         this.add(browser.component)
-        codeFactory.make()
-        val handler = JCEFLoadHandler(this)
-        browser.jbCefClient.addLoadHandler(handler, browser.cefBrowser)
     }
 
     private fun makeIcon(): ImageIcon {
@@ -57,9 +46,5 @@ class WebTab(private val browser: JBCefBrowser, private val load: Load, val code
     fun showWeb() {
         this.remove(0)
         this.revalidate()
-        codeFactory.inject()
-        toJS.ready = true
-        load.run()
     }
-
 }

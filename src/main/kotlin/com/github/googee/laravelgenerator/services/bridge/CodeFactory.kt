@@ -7,7 +7,16 @@ import com.intellij.ui.jcef.JBCefJSQuery.Response as JResponse
 
 class CodeFactory(val browser: JBCefBrowser) {
 
-    private var code = ""
+    private val code: String
+
+    init {
+        val query = JBCefJSQuery.create(browser)
+        query.addHandler { text ->
+            JResponse(handle(text).toJSON())
+        }
+        val function = makeFunction(query)
+        code = "window.JavaBridge = {call : $function};"
+    }
 
     private fun handle(text: String): Response {
         var request: Request? = null
@@ -31,18 +40,8 @@ class CodeFactory(val browser: JBCefBrowser) {
         return "function(text) {$code}"
     }
 
-    fun make() {
-        val query = JBCefJSQuery.create(browser)
-        query.addHandler { text ->
-            JResponse(handle(text).toJSON())
-        }
-        val function = makeFunction(query)
-        code = "window.JavaBridge = {call : $function};"
-    }
-
     fun inject() {
         println(code)
         browser.cefBrowser.executeJavaScript(code, browser.cefBrowser.url, 0)
     }
-
 }

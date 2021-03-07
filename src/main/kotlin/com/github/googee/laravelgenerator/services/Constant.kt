@@ -4,10 +4,12 @@ class Constant {
 
     companion object {
 
-        const val CG = "Code Generator"
+        const val Title = "Code Generator"
 
-        const val CGFolder = "code-generator"
+        const val Unknown = "Unknown Error"
 
+        fun check(message: String?): String {
+            return message ?: Unknown
+        }
     }
-
 }

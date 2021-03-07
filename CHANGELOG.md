@@ -5,11 +5,12 @@
 
 ## [Unreleased]
 ### Added
+- Open file in editor
 - Add open browser
 
 ### Changed
 - Open URL in default browser
-
+- Remove ToolWindow
 
 ## [2.0.16]
 ### Added

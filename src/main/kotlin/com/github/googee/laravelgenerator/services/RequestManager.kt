@@ -3,8 +3,9 @@ package com.github.googee.laravelgenerator.services
 import com.github.googee.laravelgenerator.services.bridge.action.*
 import com.github.googee.laravelgenerator.services.bridge.Request
 import com.github.googee.laravelgenerator.services.bridge.Response
+import com.github.googee.laravelgenerator.services.bridge.Update
 import com.github.googee.laravelgenerator.services.file.FileManager
-import com.github.googee.laravelgenerator.services.view.EditorManager
+import com.intellij.openapi.project.Project
 
 class RequestManager {
 
@@ -26,8 +27,8 @@ class RequestManager {
             return Response.error(request.action, request.key, "", ErrorMessage.ActionNotFound)
         }
 
-        fun register(em: EditorManager, fm: FileManager) {
-            val edit = Edit(em, fm)
+        fun register(fm: FileManager, update: Update, project: Project) {
+            val edit = Edit(project, update)
             add(edit.action.name, edit)
 
             val http = HTTP()
@@ -49,7 +50,5 @@ class RequestManager {
             val refresh = Refresh()
             add(refresh.action.name, refresh)
         }
-
     }
-
 }

@@ -2,19 +2,10 @@ package com.github.googee.laravelgenerator.services
 
 import com.intellij.openapi.project.Project
 import com.github.googee.laravelgenerator.MyBundle
-import com.github.googee.laravelgenerator.services.bridge.*
 import com.github.googee.laravelgenerator.services.file.FileManager
-import com.github.googee.laravelgenerator.services.view.BrowserFactory
+import com.github.googee.laravelgenerator.services.view.GeneratorView
 
-class MyProjectService(project: Project) {
-
-    val browser = BrowserFactory.make()
-    val codeFactory = CodeFactory(browser)
-    val fm = FileManager(project)
-    val toJS = ToJS(browser.cefBrowser)
-    val load = Load(fm, toJS)
-    val save = Save(toJS, fm)
-    val update = Update(fm, toJS)
+class MyProjectService(val project: Project) {
 
     companion object {
 
@@ -23,6 +14,15 @@ class MyProjectService(project: Project) {
         val instance: MyProjectService
             get() = _instance as MyProjectService
     }
+
+    private var _view: GeneratorView? = null
+    val view: GeneratorView
+        get() {
+            if (_view == null) {
+                _view = Start.run(project)
+            }
+            return _view as GeneratorView
+        }
 
     init {
         println(MyBundle.message("projectService", project.name))

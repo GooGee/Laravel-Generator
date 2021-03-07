@@ -1,12 +1,14 @@
 package com.github.googee.laravelgenerator.services.view
 
-import com.github.googee.laravelgenerator.services.ErrorMessage
+import com.github.googee.laravelgenerator.services.Constant
+import com.github.googee.laravelgenerator.services.bridge.CodeFactory
+import com.github.googee.laravelgenerator.services.bridge.Load
 import org.cef.browser.CefBrowser
 import org.cef.browser.CefFrame
 import org.cef.handler.CefLoadHandler
 import org.cef.network.CefRequest
 
-class JCEFLoadHandler(val tab: WebTab) : CefLoadHandler {
+class JCEFLoadHandler(val view: GeneratorView, val codeFactory: CodeFactory, val load: Load) : CefLoadHandler {
 
     override fun onLoadStart(p0: CefBrowser?, p1: CefFrame?, p2: CefRequest.TransitionType?) {
     }
@@ -14,14 +16,22 @@ class JCEFLoadHandler(val tab: WebTab) : CefLoadHandler {
     override fun onLoadingStateChange(p0: CefBrowser?, p1: Boolean, p2: Boolean, p3: Boolean) {
     }
 
-    override fun onLoadError(p0: CefBrowser?, p1: CefFrame?, code: CefLoadHandler.ErrorCode?, text: String?, url: String?) {
-        tab.showError(ErrorMessage.check(text))
+    override fun onLoadError(
+        p0: CefBrowser?,
+        p1: CefFrame?,
+        code: CefLoadHandler.ErrorCode?,
+        text: String?,
+        url: String?
+    ) {
+        view.showError(Constant.check(text))
     }
 
     override fun onLoadEnd(p0: CefBrowser?, p1: CefFrame?, httpStatusCode: Int) {
         println("HTTP status: $httpStatusCode")
         if (httpStatusCode == 200) {
-            tab.showWeb()
+            view.showWeb()
+            codeFactory.inject()
+            load.run()
         }
     }
 }
