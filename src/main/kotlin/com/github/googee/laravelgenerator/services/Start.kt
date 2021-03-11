@@ -47,7 +47,7 @@ class Start private constructor() {
             val toJS = ToJS(browser.cefBrowser)
             val load = Load(fm, toJS)
             val save = Save(toJS, fm)
-            val update = Update(fm, toJS)
+            val update = Update(toJS)
 
             listen(project, save)
 
