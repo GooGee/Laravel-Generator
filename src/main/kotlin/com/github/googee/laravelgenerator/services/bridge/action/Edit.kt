@@ -14,7 +14,12 @@ class Edit(val project: Project, val update: Update) : IAction {
 
     override fun run(request: Request): Response {
         return try {
-            DTS.make(project)
+            try {
+                DTS.make(project)
+            } catch (exception: Exception) {
+                println(exception.message)
+            }
+
             val file = FileManager.getFullPath(request.key, project)
             if (FileManager.isFile(file) == false) {
                 FileManager.write(file, request.data)
