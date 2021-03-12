@@ -1,8 +1,8 @@
 package com.github.googee.laravelgenerator.services.view
 
-import com.github.googee.laravelgenerator.services.Constant
 import com.github.googee.laravelgenerator.services.bridge.CodeFactory
 import com.github.googee.laravelgenerator.services.bridge.Load
+import com.github.googee.laravelgenerator.services.http.Site
 import org.cef.browser.CefBrowser
 import org.cef.browser.CefFrame
 import org.cef.handler.CefLoadHandler
@@ -23,7 +23,7 @@ class JCEFLoadHandler(val view: GeneratorView, val codeFactory: CodeFactory, val
         text: String?,
         url: String?
     ) {
-        view.showError(Constant.check(text))
+        view.showError("Cannot connect to " + Site.URI)
     }
 
     override fun onLoadEnd(p0: CefBrowser?, p1: CefFrame?, httpStatusCode: Int) {

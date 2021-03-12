@@ -16,6 +16,5 @@ class Site {
             }
             return uri
         }
-
     }
 }
