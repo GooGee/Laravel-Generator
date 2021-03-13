@@ -1,6 +1,5 @@
 package com.github.googee.laravelgenerator.services.file
 
-import com.github.googee.laravelgenerator.services.Constant
 import com.google.common.io.CharStreams
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.vfs.LocalFileSystem
@@ -69,6 +68,7 @@ class FileManager(val project: Project) {
             val writer = PrintWriter(path.toString())
             writer.print(text)
             writer.close()
+            LocalFileSystem.getInstance().refreshAndFindFileByPath(file)
         }
 
         fun refresh() {
