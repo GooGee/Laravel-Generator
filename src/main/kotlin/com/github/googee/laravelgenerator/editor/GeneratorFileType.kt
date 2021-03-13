@@ -2,9 +2,9 @@ package com.github.googee.laravelgenerator.editor
 
 import com.github.googee.laravelgenerator.services.Constant
 import com.intellij.openapi.fileTypes.ex.FakeFileType
-import com.intellij.openapi.util.IconLoader
 import com.intellij.openapi.vfs.VirtualFile
 import javax.swing.Icon
+import javax.swing.ImageIcon
 
 class GeneratorFileType : FakeFileType() {
     companion object {
@@ -20,7 +20,7 @@ class GeneratorFileType : FakeFileType() {
     }
 
     override fun getIcon(): Icon? {
-        return IconLoader.getIcon("/image/icon.svg")
+        return ImageIcon(javaClass.getResource("/image/icon.png"))
     }
 
     override fun isMyFileType(file: VirtualFile): Boolean {
