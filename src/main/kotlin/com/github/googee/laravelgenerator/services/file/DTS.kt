@@ -9,11 +9,10 @@ class DTS {
     companion object {
 
         const val FileName = "index.d.ts"
-        const val FilePath = "script/$FileName"
         val URI = Site.getURI() + "/$FileName"
 
         fun make(project: Project) {
-            val file = FileManager.getGeneratorFile(FilePath, project)
+            val file = FileManager.getGeneratorFile(FileName, project)
             if (FileManager.isFile(file)) {
                 return
             }
