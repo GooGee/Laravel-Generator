@@ -7,10 +7,14 @@
 ### Added
 - Open file in editor
 - Add open browser
+- Add tree view for Layer
+- Add route for Entity
+- Add HTML for Entity
 
 ### Changed
 - Open URL in default browser
 - Remove ToolWindow
+
 
 ## [2.0.16]
 ### Added
