@@ -6,7 +6,7 @@ import com.intellij.ui.jcef.JBCefBrowser
 class BrowserFactory {
     companion object {
         fun make(): JBCefBrowser {
-            val uri = Site.getURI()
+            val uri = Site.getURI() + "?ide=idea"
             println("URI: $uri")
             return JBCefBrowser(uri)
         }
