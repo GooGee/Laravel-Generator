@@ -3,7 +3,6 @@ package com.github.googee.laravelgenerator.services.bridge.action
 import com.github.googee.laravelgenerator.services.bridge.Request
 import com.github.googee.laravelgenerator.services.bridge.Response
 import com.github.googee.laravelgenerator.services.bridge.Update
-import com.github.googee.laravelgenerator.services.file.DTS
 import com.github.googee.laravelgenerator.services.file.FileManager
 import com.github.googee.laravelgenerator.services.view.EditorManager
 import com.intellij.openapi.project.Project
@@ -14,12 +13,6 @@ class Edit(val project: Project, val update: Update) : IAction {
 
     override fun run(request: Request): Response {
         return try {
-            try {
-                DTS.make(project)
-            } catch (exception: Exception) {
-                println(exception.message)
-            }
-
             val file = FileManager.getFullPath(request.key, project)
             if (FileManager.isFile(file) == false) {
                 FileManager.write(file, request.data)
