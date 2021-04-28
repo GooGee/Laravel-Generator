@@ -35,16 +35,22 @@
 
 ## Where is it?
 
+### v3
+
+PHPStorm Menu Bar -> Tools -> Code Generator
+
+![GUI](https://github.com/GooGee/Code-Generator/raw/main/image/v3.png)
+
+### v2
+
 PHPStorm Menu Bar -> View -> Tool Windows -> Code Generator
 
-![GUI](https://github.com/GooGee/Code-Generator/raw/main/image/phpstorm.png)
+![GUI](https://github.com/GooGee/Code-Generator/raw/main/image/v2.png)
 
 
 ## Guide
 
-- [How to generate files](https://plugins.jetbrains.com/plugin/15276-laravel-generator/-generator-)
-
-- [How to create migrations](https://plugins.jetbrains.com/plugin/15276-laravel-generator/-migration-)
+[guide](https://github.com/GooGee/Code-Generator-Page/blob/main/docs/guide.md)
 
 
 <!-- Plugin description end -->
