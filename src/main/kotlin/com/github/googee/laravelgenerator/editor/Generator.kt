@@ -5,11 +5,12 @@ import com.github.googee.laravelgenerator.services.MyProjectService
 import com.intellij.openapi.fileEditor.FileEditor
 import com.intellij.openapi.fileEditor.FileEditorLocation
 import com.intellij.openapi.fileEditor.FileEditorState
+import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.UserDataHolderBase
 import java.beans.PropertyChangeListener
 import javax.swing.JComponent
 
-class Generator : UserDataHolderBase(), FileEditor {
+class Generator(val project: Project) : UserDataHolderBase(), FileEditor {
 
     companion object {
 
@@ -20,11 +21,11 @@ class Generator : UserDataHolderBase(), FileEditor {
     }
 
     override fun getComponent(): JComponent {
-        return MyProjectService.instance.view
+        return project.getService(MyProjectService::class.java).view
     }
 
     override fun getPreferredFocusedComponent(): JComponent? {
-        return MyProjectService.instance.view
+        return project.getService(MyProjectService::class.java).view
     }
 
     override fun getName(): String {
