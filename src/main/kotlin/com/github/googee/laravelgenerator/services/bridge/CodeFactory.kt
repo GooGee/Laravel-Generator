@@ -1,11 +1,11 @@
 package com.github.googee.laravelgenerator.services.bridge
 
 import com.github.googee.laravelgenerator.services.RequestManager
-import com.intellij.ui.jcef.JBCefBrowser
+import com.intellij.ui.jcef.JBCefBrowserBase
 import com.intellij.ui.jcef.JBCefJSQuery
 import com.intellij.ui.jcef.JBCefJSQuery.Response as JResponse
 
-class CodeFactory(val browser: JBCefBrowser) {
+class CodeFactory(val browser: JBCefBrowserBase) {
 
     private val code: String
 
