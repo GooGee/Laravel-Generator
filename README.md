@@ -17,9 +17,7 @@
 <!-- Plugin description -->
 
 
-## Intuitive and efficient code generator for Laravel.
-
-![GUI](https://github.com/GooGee/Code-Generator/raw/main/image/file.png)
+## Laravel CRUD scaffold generator.
 
 
 ## Features
@@ -34,24 +32,24 @@
 - Generate Controller, Migration, Model, Test, etc.
 
 
+## Guide
+
+[guide](https://github.com/GooGee/Code-Generator-Page/blob/main/docs/guide.md)
+
+
 ## Where is it?
 
-### v3
+#### v3
 
 PHPStorm Menu Bar -> Tools -> Code Generator
 
 ![GUI](https://github.com/GooGee/Code-Generator/raw/main/image/v3.png)
 
-### v2
+#### v2
 
 PHPStorm Menu Bar -> View -> Tool Windows -> Code Generator
 
 ![GUI](https://github.com/GooGee/Code-Generator/raw/main/image/v2.png)
-
-
-## Guide
-
-[guide](https://github.com/GooGee/Code-Generator-Page/blob/main/docs/guide.md)
 
 
 To keep everything working, do not remove `<!-- ... -->` sections. 
