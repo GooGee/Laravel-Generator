@@ -14,6 +14,8 @@
 - [x] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html).
 - [x] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
+To keep everything working, do not remove `<!-- ... -->` sections. 
+
 <!-- Plugin description -->
 
 
@@ -52,7 +54,6 @@ PHPStorm Menu Bar -> View -> Tool Windows -> Code Generator
 ![GUI](https://github.com/GooGee/Code-Generator/raw/main/image/v2.png)
 
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
 <!-- Plugin description end -->
 
 ## Installation
