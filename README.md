@@ -41,17 +41,9 @@ To keep everything working, do not remove `<!-- ... -->` sections.
 
 ## Where is it?
 
-#### v3
-
 PHPStorm Menu Bar -> Tools -> Code Generator
 
 ![GUI](https://github.com/GooGee/Code-Generator/raw/main/image/v3.png)
-
-#### v2
-
-PHPStorm Menu Bar -> View -> Tool Windows -> Code Generator
-
-![GUI](https://github.com/GooGee/Code-Generator/raw/main/image/v2.png)
 
 
 <!-- Plugin description end -->
