@@ -24,7 +24,7 @@ class Generator(val project: Project) : UserDataHolderBase(), FileEditor {
         return project.getService(MyProjectService::class.java).view
     }
 
-    override fun getPreferredFocusedComponent(): JComponent? {
+    override fun getPreferredFocusedComponent(): JComponent {
         return project.getService(MyProjectService::class.java).view
     }
 

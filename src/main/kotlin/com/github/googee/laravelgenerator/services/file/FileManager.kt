@@ -27,7 +27,7 @@ class FileManager(val project: Project) {
             return getFullPath(Folder + File.separator + file, project)
         }
 
-        fun getVF(file: String): @Nullable VirtualFile? {
+        fun getVF(file: String): VirtualFile? {
             return VirtualFileManager.getInstance().refreshAndFindFileByNioPath(Paths.get(file))
         }
 
