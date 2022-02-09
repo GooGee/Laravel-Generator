@@ -7,6 +7,7 @@ import com.github.googee.laravelgenerator.services.bridge.Save
 import com.github.googee.laravelgenerator.services.bridge.ToJS
 import com.github.googee.laravelgenerator.services.bridge.Update
 import com.github.googee.laravelgenerator.services.file.FileManager
+import com.github.googee.laravelgenerator.services.http.Site
 import com.github.googee.laravelgenerator.services.view.BrowserFactory
 import com.github.googee.laravelgenerator.services.view.GeneratorView
 import com.github.googee.laravelgenerator.services.view.JCEFLoadHandler
@@ -40,10 +41,10 @@ class Start private constructor() {
         }
 
         fun run(project: Project): GeneratorView {
-
-            val browser = BrowserFactory.make()
-            val codeFactory = CodeFactory(browser)
             val fm = FileManager(project)
+            val uri = Site.getURI(fm) + "?ide=idea"
+            val browser = BrowserFactory.make(uri)
+            val codeFactory = CodeFactory(browser)
             val toJS = ToJS(browser.cefBrowser)
             val load = Load(fm, toJS)
             val save = Save(toJS, fm)
