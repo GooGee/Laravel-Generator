@@ -13,7 +13,7 @@ class GeneratorProvider : FileEditorProvider, DumbAware {
     }
 
     override fun createEditor(project: Project, file: VirtualFile): FileEditor {
-        return Generator(project)
+        return Generator(project, file)
     }
 
     override fun getEditorTypeId(): String {
